@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/Qrzy/bgg-xml-api-client.svg?branch=master)](https://travis-ci.com/Qrzy/bgg-xml-api-client)
+
 # BGG XML API Client
 
 It's a simple library providing just a single function that returns requested BGG data as a JavaScript object.
