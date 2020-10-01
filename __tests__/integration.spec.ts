@@ -42,7 +42,7 @@ describe('bggXmlApiClient client wrappers', () => {
     jest.setTimeout(60000);
     const { data } = await getBggFamily({ id: 12210 });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    expect((data as any).items.item.name.value).toEqual('Mechanic: 4X');
+    expect((data as any).items.item.name.value).toEqual('Mechanism: 4X');
   });
 
   it('gets forum with given ID', async () => {
