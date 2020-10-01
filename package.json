@@ -1,0 +1,79 @@
+{
+  "name": "bgg-xml-api-client",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A client for Boardgamegeek.com XML API (v1 and v2) that returns data as JS object.",
+  "keywords": [
+    "boardgamegeek",
+    "boardgamegeek.com",
+    "bgg",
+    "bgg api",
+    "xml api",
+    "bgg json"
+  ],
+  "homepage": "https://github.com/Qrzy/bgg-xml-api-client#readme",
+  "bugs": {
+    "url": "https://github.com/Qrzy/bgg-xml-api-client/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Marcin Kurkiewicz"
+  },
+  "contributors": [],
+  "files": [
+    "lib/**/*",
+    "src/**/*",
+    "README.md"
+  ],
+  "main": "lib/index.js",
+  "browser": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Qrzy/bgg-xml-api-client.git"
+  },
+  "scripts": {
+    "test": "jest --config jest.config.json --coverage",
+    "test:ci": "jest --config jest.config.json --coverage && coveralls < coverage/lcov.info",
+    "compile": "tsc --sourceMap --declarationMap",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "build": "npm run format && npm run lint && npm run compile",
+    "lint": "eslint --ignore-path .gitignore .",
+    "prepare": "npm run compile",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "fast-xml-parser": "^3.17.4",
+    "setimmediate": "^1.0.5"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.2.3",
+    "@typescript-eslint/eslint-plugin": "^3.1.0",
+    "@typescript-eslint/parser": "^3.1.0",
+    "coveralls": "^3.1.0",
+    "eslint": "^7.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "husky": "^4.2.5",
+    "jest": "^26.0.1",
+    "lint-staged": "^10.2.9",
+    "prettier": "^2.0.5",
+    "ts-jest": "^26.1.0",
+    "typescript": "^3.9.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  }
+}
