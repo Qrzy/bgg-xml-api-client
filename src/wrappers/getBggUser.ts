@@ -17,4 +17,4 @@ export type BggUserParams = {
 export interface BggUserResponse {}
 
 export const getBggUser = (params: BggUserParams): Promise<AxiosResponse<BggUserResponse>> =>
-  bggXmlApiClient('user', params);
+  bggXmlApiClient.get('user', params);

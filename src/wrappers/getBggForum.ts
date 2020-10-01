@@ -11,4 +11,4 @@ export type BggForumParams = {
 export interface BggForumResponse {}
 
 export const getBggForum = (params: BggForumParams): Promise<AxiosResponse<BggForumResponse>> =>
-  bggXmlApiClient('forum', params);
+  bggXmlApiClient.get('forum', params);

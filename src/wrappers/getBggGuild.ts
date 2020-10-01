@@ -14,4 +14,4 @@ export type BggGuildParams = {
 export interface BggGuildResponse {}
 
 export const getBggGuild = (params: BggGuildParams): Promise<AxiosResponse<BggGuildResponse>> =>
-  bggXmlApiClient('guild', params);
+  bggXmlApiClient.get('guild', params);

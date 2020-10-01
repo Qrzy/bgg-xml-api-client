@@ -50,4 +50,4 @@ export type BggCollectionParams = {
 export interface BggCollectionResponse {}
 
 export const getBggCollection = (params: BggCollectionParams): Promise<AxiosResponse<BggCollectionResponse>> =>
-  bggXmlApiClient('collection', params);
+  bggXmlApiClient.get('collection', params);

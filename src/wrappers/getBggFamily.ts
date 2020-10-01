@@ -12,4 +12,4 @@ export type BggFamilyParams = {
 export interface BggFamilyResponse {}
 
 export const getBggFamily = (params: BggFamilyParams): Promise<AxiosResponse<BggFamilyResponse>> =>
-  bggXmlApiClient('family', params);
+  bggXmlApiClient.get('family', params);

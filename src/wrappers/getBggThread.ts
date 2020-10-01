@@ -13,4 +13,4 @@ export type BggThreadParams = {
 export interface BggThreadResponse {}
 
 export const getBggThread = (params: BggThreadParams): Promise<AxiosResponse<BggThreadResponse>> =>
-  bggXmlApiClient('thread', params);
+  bggXmlApiClient.get('thread', params);

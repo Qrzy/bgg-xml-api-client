@@ -18,4 +18,4 @@ export type BggHotParams = {
 export interface BggHotResponse {}
 
 export const getBggHot = (params: BggHotParams): Promise<AxiosResponse<BggHotResponse>> =>
-  bggXmlApiClient('hot', params);
+  bggXmlApiClient.get('hot', params);
