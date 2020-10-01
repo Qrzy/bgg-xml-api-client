@@ -13,4 +13,4 @@ export type BggSearchParams = {
 export interface BggSearchResponse {}
 
 export const getBggSearch = (params: BggSearchParams): Promise<AxiosResponse<BggSearchResponse>> =>
-  bggXmlApiClient('search', params);
+  bggXmlApiClient.get('search', params);

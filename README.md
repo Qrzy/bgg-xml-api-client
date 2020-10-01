@@ -11,7 +11,7 @@ The main data sits in `data` property of that response object.
 ```js
 import bggXmlApiClient from 'bgg-xml-api-client';
 
-const { data } = await bggXmlApiClient('user', { name: 'Qrzy88' });
+const { data } = await bggXmlApiClient.get('user', { name: 'Qrzy88' });
 
 console.log(data.id); // displays: 1381959
 ```

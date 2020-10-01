@@ -14,4 +14,4 @@ export type BggForumlistParams = {
 export interface BggForumlistResponse {}
 
 export const getBggForumlist = (params: BggForumlistParams): Promise<AxiosResponse<BggForumlistResponse>> =>
-  bggXmlApiClient('forumlist', params);
+  bggXmlApiClient.get('forumlist', params);

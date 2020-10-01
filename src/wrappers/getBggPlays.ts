@@ -16,4 +16,4 @@ export type BggPlaysParams = {
 export interface BggPlaysResponse {}
 
 export const getBggPlays = (params: BggPlaysParams): Promise<AxiosResponse<BggPlaysResponse>> =>
-  bggXmlApiClient('plays', params);
+  bggXmlApiClient.get('plays', params);

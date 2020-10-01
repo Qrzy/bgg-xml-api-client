@@ -12,4 +12,4 @@ export type GeeklistParams = {
 export interface GeeklistResponse {}
 
 export const getBggGeeklist = (params: GeeklistParams): Promise<AxiosResponse<GeeklistResponse>> =>
-  bggXmlApiClient('geeklist', params);
+  bggXmlApiClient.get('geeklist', params);
