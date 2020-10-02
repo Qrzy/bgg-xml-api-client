@@ -1,7 +1,6 @@
 {
   "name": "bgg-xml-api-client",
   "version": "0.1.0",
-  "private": true,
   "description": "A client for Boardgamegeek.com XML API (v1 and v2) that returns data as JS object.",
   "keywords": [
     "boardgamegeek",
