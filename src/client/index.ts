@@ -24,6 +24,7 @@ export const bggXmlApiClient = {
           throw new Error();
         }
 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         response.data = (response as any).data[Object.keys(response.data)[0]];
         return response;
       } catch (err) {

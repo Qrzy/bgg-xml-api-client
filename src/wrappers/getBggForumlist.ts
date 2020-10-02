@@ -11,7 +11,10 @@ export type BggForumlistParams = {
 
 // TODO: specify this interface
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface BggForumlistResponse {}
+export interface BggForumlistResponse {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [prop: string]: any;
+}
 
 export const getBggForumlist = (params: BggForumlistParams): Promise<AxiosResponse<BggForumlistResponse>> =>
   bggXmlApiClient.get('forumlist', params);

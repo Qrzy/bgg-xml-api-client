@@ -10,7 +10,10 @@ export type BggThreadParams = {
 
 // TODO: specify this interface
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface BggThreadResponse {}
+export interface BggThreadResponse {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [prop: string]: any;
+}
 
 export const getBggThread = (params: BggThreadParams): Promise<AxiosResponse<BggThreadResponse>> =>
   bggXmlApiClient.get('thread', params);

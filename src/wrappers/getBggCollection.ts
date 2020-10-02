@@ -47,7 +47,10 @@ export type BggCollectionParams = {
 
 // TODO: specify this interface
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface BggCollectionResponse {}
+export interface BggCollectionResponse {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [prop: string]: any;
+}
 
 export const getBggCollection = (params: BggCollectionParams): Promise<AxiosResponse<BggCollectionResponse>> =>
   bggXmlApiClient.get('collection', params);

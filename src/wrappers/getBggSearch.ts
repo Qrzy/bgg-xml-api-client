@@ -10,7 +10,10 @@ export type BggSearchParams = {
 
 // TODO: specify this interface
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface BggSearchResponse {}
+export interface BggSearchResponse {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [prop: string]: any;
+}
 
 export const getBggSearch = (params: BggSearchParams): Promise<AxiosResponse<BggSearchResponse>> =>
   bggXmlApiClient.get('search', params);

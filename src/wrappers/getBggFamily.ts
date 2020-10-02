@@ -9,7 +9,10 @@ export type BggFamilyParams = {
 
 // TODO: specify this interface
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface BggFamilyResponse {}
+export interface BggFamilyResponse {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [prop: string]: any;
+}
 
 export const getBggFamily = (params: BggFamilyParams): Promise<AxiosResponse<BggFamilyResponse>> =>
   bggXmlApiClient.get('family', params);

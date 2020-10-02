@@ -11,7 +11,10 @@ export type BggGuildParams = {
 
 // TODO: specify this interface
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface BggGuildResponse {}
+export interface BggGuildResponse {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [prop: string]: any;
+}
 
 export const getBggGuild = (params: BggGuildParams): Promise<AxiosResponse<BggGuildResponse>> =>
   bggXmlApiClient.get('guild', params);

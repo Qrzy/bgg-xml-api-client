@@ -13,7 +13,10 @@ export type BggPlaysParams = {
 
 // TODO: specify this interface
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface BggPlaysResponse {}
+export interface BggPlaysResponse {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [prop: string]: any;
+}
 
 export const getBggPlays = (params: BggPlaysParams): Promise<AxiosResponse<BggPlaysResponse>> =>
   bggXmlApiClient.get('plays', params);

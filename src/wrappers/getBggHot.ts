@@ -15,7 +15,10 @@ export type BggHotParams = {
 
 // TODO: specify this interface
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface BggHotResponse {}
+export interface BggHotResponse {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [prop: string]: any;
+}
 
 export const getBggHot = (params: BggHotParams): Promise<AxiosResponse<BggHotResponse>> =>
   bggXmlApiClient.get('hot', params);
