@@ -9,7 +9,7 @@
       "ES2016",
       "ES2017"
     ],
-    "module": "commonjs",
+    "module": "ES2015",
     "declaration": true,
     "outDir": "./lib",
     "strict": true
