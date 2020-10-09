@@ -17,7 +17,7 @@ export type BggCollectionParams = {
   version?: OneOrNothing;
   subtype?: BggCollectionSubtype;
   excludesubtype?: BggCollectionSubtype;
-  id?: number;
+  id?: number | number[] | string;
   brief?: OneOrNothing;
   stats?: OneOrNothing;
   own?: ZeroOrOne;
@@ -52,5 +52,10 @@ export interface BggCollectionResponse {
   [prop: string]: any;
 }
 
-export const getBggCollection = (params: BggCollectionParams): Promise<AxiosResponse<BggCollectionResponse>> =>
-  bggXmlApiClient.get('collection', params);
+export const getBggCollection = (params: BggCollectionParams): Promise<AxiosResponse<BggCollectionResponse>> => {
+  const newParams = {
+    ...params,
+    ...(params.id && { id: Array.isArray(params.id) ? params.id.join(',') : params.id }),
+  };
+  return bggXmlApiClient.get('collection', newParams);
+};

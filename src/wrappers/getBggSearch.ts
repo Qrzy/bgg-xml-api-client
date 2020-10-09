@@ -2,9 +2,11 @@ import { bggXmlApiClient } from '../client';
 import { OneOrNothing } from '../types';
 import { AxiosResponse } from 'axios';
 
+export type SearchType = 'rpgitem' | 'videogame' | 'boardgame' | 'boardgameaccessory' | 'boardgameexpansion';
+
 export type BggSearchParams = {
   query: string;
-  type?: 'rpgitem' | 'videogame' | 'boardgame' | 'boardgameaccessory' | 'boardgameexpansion';
+  type?: SearchType | SearchType[] | string;
   exact?: OneOrNothing;
 };
 
@@ -15,5 +17,10 @@ export interface BggSearchResponse {
   [prop: string]: any;
 }
 
-export const getBggSearch = (params: BggSearchParams): Promise<AxiosResponse<BggSearchResponse>> =>
-  bggXmlApiClient.get('search', params);
+export const getBggSearch = (params: BggSearchParams): Promise<AxiosResponse<BggSearchResponse>> => {
+  const newParams = {
+    ...params,
+    ...(params.type && { type: Array.isArray(params.type) ? params.type.join(',') : params.type }),
+  };
+  return bggXmlApiClient.get('search', newParams);
+};

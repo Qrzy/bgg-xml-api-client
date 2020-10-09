@@ -18,5 +18,9 @@ export interface BggPlaysResponse {
   [prop: string]: any;
 }
 
-export const getBggPlays = (params: BggPlaysParams): Promise<AxiosResponse<BggPlaysResponse>> =>
-  bggXmlApiClient.get('plays', params);
+export const getBggPlays = (params: BggPlaysParams): Promise<AxiosResponse<BggPlaysResponse>> => {
+  if (!params.username && !(params.id && params.type)) {
+    throw new Error('You must specify either username or id and type');
+  }
+  return bggXmlApiClient.get('plays', params);
+};
