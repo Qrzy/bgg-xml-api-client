@@ -3,7 +3,7 @@ import { BggFamilyType } from '../types';
 import { AxiosResponse } from 'axios';
 
 export type BggFamilyParams = {
-  id?: number;
+  id?: number | number[] | string;
   type?: BggFamilyType;
 };
 
@@ -14,5 +14,10 @@ export interface BggFamilyResponse {
   [prop: string]: any;
 }
 
-export const getBggFamily = (params: BggFamilyParams): Promise<AxiosResponse<BggFamilyResponse>> =>
-  bggXmlApiClient.get('family', params);
+export const getBggFamily = (params: BggFamilyParams): Promise<AxiosResponse<BggFamilyResponse>> => {
+  const newParams = {
+    ...params,
+    ...(params.id && { id: Array.isArray(params.id) ? params.id.join(',') : params.id }),
+  };
+  return bggXmlApiClient.get('family', newParams);
+};
