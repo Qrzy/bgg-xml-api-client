@@ -1,4 +1,3 @@
-import { bggXmlApiClient } from '../src/client';
 import {
   getBggCollection,
   getBggFamily,
@@ -12,16 +11,7 @@ import {
   getBggThing,
   getBggThread,
   getBggUser,
-} from '../src/wrappers';
-
-describe('bggXmlApiClient client', () => {
-  it('gets geeklist with given ID', async () => {
-    jest.setTimeout(60000);
-    const { data } = await bggXmlApiClient.get('geeklist', { id: 272940, comments: 1 });
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    expect((data as any).title).toEqual('#36,5 Polski MatHandel (Polish Math Trade)');
-  });
-});
+} from '../lib';
 
 describe('bggXmlApiClient client wrappers', () => {
   describe('getBggCollection', () => {

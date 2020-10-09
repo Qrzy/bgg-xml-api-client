@@ -24,9 +24,9 @@
     "src/**/*",
     "README.md"
   ],
-  "main": "lib/index.cjs",
-  "browser": "lib/index.js",
-  "module": "lib/index.mjs",
+  "main": "lib/index.js",
+  "browser": "lib/web/index.js",
+  "module": "lib/module/index.js",
   "types": "lib/index.d.ts",
   "repository": {
     "type": "git",
@@ -49,6 +49,8 @@
     "setimmediate": "^1.0.5"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^15.1.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
     "@types/jest": "^25.2.3",
     "@typescript-eslint/eslint-plugin": "^3.1.0",
     "@typescript-eslint/parser": "^3.1.0",
