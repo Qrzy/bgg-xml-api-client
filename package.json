@@ -34,6 +34,7 @@
   },
   "scripts": {
     "test": "jest --config jest.config.json --coverage",
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
     "format": "prettier --write \"src/**/*.ts\"",
     "build": "npm run format && npm run lint && npx rollup -c",
     "lint": "eslint --ignore-path .gitignore .",

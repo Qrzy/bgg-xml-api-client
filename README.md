@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.com/Qrzy/bgg-xml-api-client.svg?branch=master)](https://travis-ci.com/Qrzy/bgg-xml-api-client)
+[![Coverage Status](https://coveralls.io/repos/github/Qrzy/bgg-xml-api-client/badge.svg?branch=coveralls-integration)](https://coveralls.io/github/Qrzy/bgg-xml-api-client?branch=coveralls-integration)
 
 # BGG XML API Client
 
