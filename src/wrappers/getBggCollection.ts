@@ -45,9 +45,83 @@ export type BggCollectionParams = {
   modifiedsince?: string; // YY-MM-DD or YY-MM-DD%20HH:MM:SS
 };
 
-// TODO: specify this interface
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface BggCollectionItemName {
+  sortindex: string;
+  text: string;
+}
+
+export interface BggCollectionItemRating {
+  average: { value: string };
+  bayesaverage: { value: string };
+}
+
+export interface BggCollectionItemStats {
+  maxplayers: string;
+  maxplaytime: string;
+  minplayers: string;
+  minplaytime: string;
+  numowned: string;
+  playingtime: string;
+  rating: BggCollectionItemRating;
+}
+
+export interface BggCollectionItemStatus {
+  fortrade: string;
+  lastmodified: string;
+  own: string;
+  preordered: string;
+  preowned: string;
+  want: string;
+  wanttobuy: string;
+  wanttoplay: string;
+  wishlist: string;
+  wishlistpriority: string;
+}
+
+export interface BggCollectionItemVersionLink {
+  id: string;
+  inbound: string;
+  type: string;
+  value: string;
+}
+
+export interface BggCollectionItemVersionName {
+  sortindex: string;
+  type: string;
+  value: string;
+}
+
+export interface BggCollectionItemVersion {
+  depth: { value: string };
+  id: string;
+  image: string;
+  length: { value: string };
+  link: BggCollectionItemVersionLink | BggCollectionItemVersionLink[];
+  name: BggCollectionItemVersionName | BggCollectionItemVersionName[];
+  productCode: { value: string };
+  thumbnail: string;
+  type: string;
+  weight: { value: string };
+  width: { value: string };
+  yearpublished: { value: string };
+}
+
+export interface BggCollectionItem {
+  collid: string;
+  name: BggCollectionItemName;
+  objectid: string;
+  objecttype: string;
+  stats: BggCollectionItemStats;
+  status: BggCollectionItemStatus;
+  subtype: string; // or some enum?
+  version: BggCollectionItemVersion;
+}
+
 export interface BggCollectionResponse {
+  termsofuse: string;
+  pubdate: string;
+  totalitems: string;
+  item: BggCollectionItem[];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [prop: string]: any;
 }
