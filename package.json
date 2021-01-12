@@ -44,7 +44,7 @@
     "postversion": "git push && git push --tags"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "fast-xml-parser": "^3.17.6",
     "setimmediate": "^1.0.5"
   },
