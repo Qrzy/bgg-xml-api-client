@@ -28,7 +28,7 @@ export const bggXmlApiClient = {
         response.data = (response as any).data[Object.keys(response.data)[0]];
         return response;
       } catch (err) {
-        await new Promise((resolve) => setTimeout(() => resolve(), retryInterval));
+        await new Promise<void>((resolve) => setTimeout(() => resolve(), retryInterval));
       }
     }
 
