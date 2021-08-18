@@ -36,11 +36,11 @@
     "test": "jest --config jest.config.json --coverage",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "format": "prettier --write \"src/**/*.ts\"",
-    "build": "npm run format && npm run lint && npx rollup -c",
+    "build": "yarn format && yarn lint && npx rollup -c",
     "lint": "eslint --ignore-path .gitignore .",
-    "prepublishOnly": "npm test && npm run lint && npm run build",
-    "preversion": "npm run lint",
-    "version": "npm run format && git add -A src",
+    "prepublishOnly": "npm test && yarn lint && yarn build",
+    "preversion": "yarn lint",
+    "version": "yarn format && git add -A src",
     "postversion": "git push && git push --tags"
   },
   "dependencies": {
