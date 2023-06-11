@@ -1,9 +1,9 @@
 /* istanbul ignore file */
 
-import bggXmlApiClient from './client';
+import bggXmlApiClient from './client'
 
-export default bggXmlApiClient;
+export default bggXmlApiClient
 
-export { bggXmlApiClient } from './client';
-export * from './types';
-export * from './wrappers';
+export { bggXmlApiClient } from './client'
+export * from './types'
+export * from './wrappers'

@@ -1,24 +1,25 @@
-import { bggXmlApiClient } from '../client';
-import { AxiosResponse } from 'axios';
+import type { AxiosResponse } from 'axios'
+import { bggXmlApiClient } from '../client'
 
-export type BggHotParams = {
+export interface BggHotParams {
   type:
-    | 'boardgame'
-    | 'rpg'
-    | 'videogame'
-    | 'boardgameperson'
-    | 'rpgperson'
-    | 'boardgamecompany'
-    | 'rpgcompany'
-    | 'videogamecompany';
-};
-
-// TODO: specify this interface
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface BggHotResponse {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [prop: string]: any;
+  | 'boardgame'
+  | 'rpg'
+  | 'videogame'
+  | 'boardgameperson'
+  | 'rpgperson'
+  | 'boardgamecompany'
+  | 'rpgcompany'
+  | 'videogamecompany'
 }
 
-export const getBggHot = (params: BggHotParams): Promise<AxiosResponse<BggHotResponse>> =>
-  bggXmlApiClient.get('hot', params);
+// TODO: specify this interface
+
+export interface BggHotResponse {
+
+  [prop: string]: any
+}
+
+export function getBggHot(params: BggHotParams): Promise<AxiosResponse<BggHotResponse>> {
+  return bggXmlApiClient.get('hot', params)
+}

@@ -1,17 +1,18 @@
-import { bggXmlApiClient } from '../client';
-import { AxiosResponse } from 'axios';
+import type { AxiosResponse } from 'axios'
+import { bggXmlApiClient } from '../client'
 
-export type BggForumParams = {
-  id?: number;
-  page?: number;
-};
-
-// TODO: specify this interface
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface BggForumResponse {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [prop: string]: any;
+export interface BggForumParams {
+  id?: number
+  page?: number
 }
 
-export const getBggForum = (params: BggForumParams): Promise<AxiosResponse<BggForumResponse>> =>
-  bggXmlApiClient.get('forum', params);
+// TODO: specify this interface
+
+export interface BggForumResponse {
+
+  [prop: string]: any
+}
+
+export function getBggForum(params: BggForumParams): Promise<AxiosResponse<BggForumResponse>> {
+  return bggXmlApiClient.get('forum', params)
+}

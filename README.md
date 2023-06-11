@@ -1,5 +1,4 @@
 [![Build Status](https://travis-ci.com/Qrzy/bgg-xml-api-client.svg?branch=master)](https://travis-ci.com/Qrzy/bgg-xml-api-client)
-[![Coverage Status](https://coveralls.io/repos/github/Qrzy/bgg-xml-api-client/badge.svg?branch=coveralls-integration)](https://coveralls.io/github/Qrzy/bgg-xml-api-client?branch=coveralls-integration)
 [![minified + gzip](https://badgen.net/bundlephobia/minzip/bgg-xml-api-client)](https://bundlephobia.com/result?p=bgg-xml-api-client@0.1.3)
 [![deps count](https://badgen.net/bundlephobia/dependency-count/bgg-xml-api-client)](https://bundlephobia.com/result?p=bgg-xml-api-client@0.1.3)
 [![deps count](https://badgen.net/bundlephobia/tree-shaking/bgg-xml-api-client)](https://bundlephobia.com/result?p=bgg-xml-api-client@0.1.3)
@@ -14,11 +13,11 @@ The main data sits in `data` property of that response object.
 ## Example usage:
 
 ```js
-import bggXmlApiClient from 'bgg-xml-api-client';
+import bggXmlApiClient from 'bgg-xml-api-client'
 
-const { data } = await bggXmlApiClient.get('user', { name: 'Qrzy88' });
+const { data } = await bggXmlApiClient.get('user', { name: 'Qrzy88' })
 
-console.log(data.id); // displays: 1381959
+console.log(data.id) // displays: 1381959
 ```
 
 `bggXmlApiClient` takes 2 parameters:

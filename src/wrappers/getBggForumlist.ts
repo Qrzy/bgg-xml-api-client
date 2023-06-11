@@ -1,20 +1,21 @@
 /* istanbul ignore file */
 // TODO: get known what is it and test properly!
 
-import { bggXmlApiClient } from '../client';
-import { AxiosResponse } from 'axios';
+import type { AxiosResponse } from 'axios'
+import { bggXmlApiClient } from '../client'
 
-export type BggForumlistParams = {
-  id?: number;
-  type?: 'thing' | 'family';
-};
-
-// TODO: specify this interface
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface BggForumlistResponse {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [prop: string]: any;
+export interface BggForumlistParams {
+  id?: number
+  type?: 'thing' | 'family'
 }
 
-export const getBggForumlist = (params: BggForumlistParams): Promise<AxiosResponse<BggForumlistResponse>> =>
-  bggXmlApiClient.get('forumlist', params);
+// TODO: specify this interface
+
+export interface BggForumlistResponse {
+
+  [prop: string]: any
+}
+
+export function getBggForumlist(params: BggForumlistParams): Promise<AxiosResponse<BggForumlistResponse>> {
+  return bggXmlApiClient.get('forumlist', params)
+}
