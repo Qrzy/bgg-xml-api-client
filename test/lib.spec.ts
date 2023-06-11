@@ -12,7 +12,7 @@ import {
   getBggThing,
   getBggThread,
   getBggUser,
-} from '../lib'
+} from '../dist'
 
 describe('bggXmlApiClient client wrappers', () => {
   describe('getBggCollection', () => {
