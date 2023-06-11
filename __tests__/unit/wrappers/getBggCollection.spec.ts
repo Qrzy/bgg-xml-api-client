@@ -1,7 +1,8 @@
+import { describe, expect, it, vi } from 'vitest'
 import { getBggCollection } from '../../../src/wrappers'
 import bggXmlApiClient from '../../../src/client'
 
-jest.mock('../../../src/client')
+vi.mock('../../../src/client')
 
 describe('getBggCollection', () => {
   it('passes given username', async () => {

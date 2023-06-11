@@ -1,9 +1,3 @@
-[![Build Status](https://travis-ci.com/Qrzy/bgg-xml-api-client.svg?branch=master)](https://travis-ci.com/Qrzy/bgg-xml-api-client)
-[![minified + gzip](https://badgen.net/bundlephobia/minzip/bgg-xml-api-client)](https://bundlephobia.com/result?p=bgg-xml-api-client@0.1.3)
-[![deps count](https://badgen.net/bundlephobia/dependency-count/bgg-xml-api-client)](https://bundlephobia.com/result?p=bgg-xml-api-client@0.1.3)
-[![deps count](https://badgen.net/bundlephobia/tree-shaking/bgg-xml-api-client)](https://bundlephobia.com/result?p=bgg-xml-api-client@0.1.3)
-
-
 # BGG XML API Client
 
 It's a simple library providing just a single function that returns requested BGG data as a JavaScript object.

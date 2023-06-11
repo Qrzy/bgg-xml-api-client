@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest'
 import {
   BGG_API_V1_BASE_URL,
   BGG_API_V2_BASE_URL,
