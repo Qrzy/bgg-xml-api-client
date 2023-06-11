@@ -1,11 +1,10 @@
 /* istanbul ignore file */
 
-import {
+import type {
   BggCollectionParams,
   BggFamilyParams,
   BggForumParams,
   BggForumlistParams,
-  GeeklistParams,
   BggGuildParams,
   BggHotParams,
   BggPlaysParams,
@@ -13,7 +12,8 @@ import {
   BggThingParams,
   BggThreadParams,
   BggUserParams,
-} from './wrappers';
+  GeeklistParams,
+} from './wrappers'
 
 export type ResourceName =
   | 'geeklist'
@@ -27,9 +27,9 @@ export type ResourceName =
   | 'plays'
   | 'collection'
   | 'hot'
-  | 'search';
+  | 'search'
 
-export type OneOrNothing = 1 | undefined;
+export type OneOrNothing = 1 | undefined
 
 export type ThingType =
   | 'boardgame'
@@ -37,9 +37,9 @@ export type ThingType =
   | 'boardgameaccessory'
   | 'videogame'
   | 'rpgitem'
-  | 'rpgissue';
+  | 'rpgissue'
 
-export type BggFamilyType = 'rpg' | 'rpgperiodical' | 'boardgamefamily';
+export type BggFamilyType = 'rpg' | 'rpgperiodical' | 'boardgamefamily'
 
 export type BggParams =
   | BggCollectionParams
@@ -53,10 +53,10 @@ export type BggParams =
   | BggSearchParams
   | BggThingParams
   | BggThreadParams
-  | BggUserParams;
+  | BggUserParams
 
-export type XmlString = string;
+export type XmlString = string
 
 export interface XmlParser {
-  parse: (text: XmlString) => unknown;
+  parse: (text: XmlString) => unknown
 }

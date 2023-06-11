@@ -1,23 +1,24 @@
-import bggXmlApiClient from '../client';
-import { OneOrNothing } from '../types';
-import { AxiosResponse } from 'axios';
+import type { AxiosResponse } from 'axios'
+import bggXmlApiClient from '../client'
+import type { OneOrNothing } from '../types'
 
-export type BggUserParams = {
-  name?: string;
-  buddies?: OneOrNothing;
-  guilds?: OneOrNothing;
-  hot?: OneOrNothing;
-  top?: OneOrNothing;
-  domain?: 'boardgame' | 'rpg' | 'videogame';
-  page?: number;
-};
-
-// TODO: specify this interface
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface BggUserResponse {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [prop: string]: any;
+export interface BggUserParams {
+  name?: string
+  buddies?: OneOrNothing
+  guilds?: OneOrNothing
+  hot?: OneOrNothing
+  top?: OneOrNothing
+  domain?: 'boardgame' | 'rpg' | 'videogame'
+  page?: number
 }
 
-export const getBggUser = (params: BggUserParams): Promise<AxiosResponse<BggUserResponse>> =>
-  bggXmlApiClient.get('user', params);
+// TODO: specify this interface
+
+export interface BggUserResponse {
+
+  [prop: string]: any
+}
+
+export function getBggUser(params: BggUserParams): Promise<AxiosResponse<BggUserResponse>> {
+  return bggXmlApiClient.get('user', params)
+}

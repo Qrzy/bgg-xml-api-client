@@ -1,19 +1,20 @@
-import { bggXmlApiClient } from '../client';
-import { AxiosResponse } from 'axios';
+import type { AxiosResponse } from 'axios'
+import { bggXmlApiClient } from '../client'
 
-export type BggThreadParams = {
-  id?: number;
-  minarticleid?: number;
-  minarticledate?: string; // YYYY-MM-DD or YYYY-MM-DD%20HH%3AMM%3ASS
-  count?: number;
-};
-
-// TODO: specify this interface
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface BggThreadResponse {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [prop: string]: any;
+export interface BggThreadParams {
+  id?: number
+  minarticleid?: number
+  minarticledate?: string // YYYY-MM-DD or YYYY-MM-DD%20HH%3AMM%3ASS
+  count?: number
 }
 
-export const getBggThread = (params: BggThreadParams): Promise<AxiosResponse<BggThreadResponse>> =>
-  bggXmlApiClient.get('thread', params);
+// TODO: specify this interface
+
+export interface BggThreadResponse {
+
+  [prop: string]: any
+}
+
+export function getBggThread(params: BggThreadParams): Promise<AxiosResponse<BggThreadResponse>> {
+  return bggXmlApiClient.get('thread', params)
+}

@@ -1,12 +1,12 @@
 /* istanbul ignore file */
 
-import { getBggApiClient } from './getBggApiClient';
-import { createResourceUrl } from '../helpers/createResourceUrl';
-import { ResourceName, BggParams } from '../types';
-import { AxiosResponse } from 'axios';
+import type { AxiosResponse } from 'axios'
+import { createResourceUrl } from '../helpers/createResourceUrl'
+import type { BggParams, ResourceName } from '../types'
+import { getBggApiClient } from './getBggApiClient'
 
-export const DEFAULT_MAX_RETRIES = 10;
-export const DEFAULT_INTERVAL = 5000;
+export const DEFAULT_MAX_RETRIES = 10
+export const DEFAULT_INTERVAL = 5000
 
 export const bggXmlApiClient = {
   get: async (
@@ -15,25 +15,24 @@ export const bggXmlApiClient = {
     maxRetries: number = DEFAULT_MAX_RETRIES,
     retryInterval: number = DEFAULT_INTERVAL,
   ): Promise<AxiosResponse> => {
-    const client = getBggApiClient(resource);
+    const client = getBggApiClient(resource)
     for (let i = 0; i < maxRetries; i++) {
       try {
-        const resourceUrl = createResourceUrl(resource, queryParams);
-        const response = await client.get<{ message?: string }>(resourceUrl);
-        if (response.data.message && response.data.message.includes('processed')) {
-          throw new Error();
-        }
+        const resourceUrl = createResourceUrl(resource, queryParams)
+        const response = await client.get<{ message?: string }>(resourceUrl)
+        if (response.data.message && response.data.message.includes('processed'))
+          throw new Error('processing...')
 
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        response.data = (response as any).data[Object.keys(response.data)[0]];
-        return response;
-      } catch (err) {
-        await new Promise<void>((resolve) => setTimeout(() => resolve(), retryInterval));
+        response.data = (response as any).data[Object.keys(response.data)[0]]
+        return response
+      }
+      catch (err) {
+        await new Promise<void>(resolve => setTimeout(() => resolve(), retryInterval))
       }
     }
 
-    throw new Error(`Max retries reached! Resource: ${resource}, Params: ${JSON.stringify(queryParams)}`);
+    throw new Error(`Max retries reached! Resource: ${resource}, Params: ${JSON.stringify(queryParams)}`)
   },
-};
+}
 
-export default bggXmlApiClient;
+export default bggXmlApiClient

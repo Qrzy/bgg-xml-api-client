@@ -1,23 +1,23 @@
-import { bggXmlApiClient } from '../client';
-import { BggFamilyType } from '../types';
-import { AxiosResponse } from 'axios';
+import type { AxiosResponse } from 'axios'
+import { bggXmlApiClient } from '../client'
+import type { BggFamilyType } from '../types'
 
-export type BggFamilyParams = {
-  id?: number | number[] | string;
-  type?: BggFamilyType;
-};
-
-// TODO: specify this interface
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface BggFamilyResponse {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [prop: string]: any;
+export interface BggFamilyParams {
+  id?: number | number[] | string
+  type?: BggFamilyType
 }
 
-export const getBggFamily = (params: BggFamilyParams): Promise<AxiosResponse<BggFamilyResponse>> => {
+// TODO: specify this interface
+
+export interface BggFamilyResponse {
+
+  [prop: string]: any
+}
+
+export function getBggFamily(params: BggFamilyParams): Promise<AxiosResponse<BggFamilyResponse>> {
   const newParams = {
     ...params,
     ...(params.id && { id: Array.isArray(params.id) ? params.id.join(',') : params.id }),
-  };
-  return bggXmlApiClient.get('family', newParams);
-};
+  }
+  return bggXmlApiClient.get('family', newParams)
+}
