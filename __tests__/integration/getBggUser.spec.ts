@@ -1,8 +1,8 @@
+import { describe, expect, it } from 'vitest'
 import { getBggUser } from '../../src/wrappers'
 
 describe('getBggUser', () => {
   it('gets user with given name', async () => {
-    jest.setTimeout(60000)
     const { data } = await getBggUser({ name: 'Qrzy88' })
     expect(data).toHaveProperty('id')
     expect(data.id).toEqual('1381959')

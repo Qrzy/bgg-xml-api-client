@@ -1,8 +1,8 @@
+import { describe, expect, it } from 'vitest'
 import { getBggPlays } from '../../src/wrappers'
 
 describe('getBggPlays', () => {
   it('gets plays with given username', async () => {
-    jest.setTimeout(60000)
     const { data } = await getBggPlays({ username: 'Qrzy88' })
     expect(data).toHaveProperty('play')
     expect(data.play).toBeInstanceOf(Array)
@@ -11,7 +11,6 @@ describe('getBggPlays', () => {
   })
 
   it('throws when necessary params are not given', async () => {
-    jest.setTimeout(60000)
     expect(() => getBggPlays({})).toThrowError()
     expect(() => getBggPlays({ type: 'thing' })).toThrowError()
     expect(() => getBggPlays({ id: 1 })).toThrowError()

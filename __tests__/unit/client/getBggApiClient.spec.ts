@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest'
 import { getBggApiClient } from '../../../src/client/getBggApiClient'
 
 describe('getBggApiClient', () => {
