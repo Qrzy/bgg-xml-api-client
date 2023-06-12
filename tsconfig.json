@@ -16,6 +16,6 @@
     "outDir": "./lib",
     "strict": true
   },
-  "include": ["src", "__tests__"],
+  "include": ["src", "test"],
   "exclude": ["node_modules", "**/__tests__/*"]
 }
