@@ -3,8 +3,8 @@ import { getBggGuild } from '../../src/wrappers'
 
 describe('getBggGuild', () => {
   it('gets guild with given ID', async () => {
-    const { data } = await getBggGuild({ id: 1497 })
-    expect(data).toHaveProperty('name')
-    expect(data.name).toEqual('#boardgames')
+    const response = await getBggGuild({ id: 1497 })
+    expect(response.guild).toHaveProperty('name')
+    expect(response.guild.name).toEqual('#boardgames')
   })
 })

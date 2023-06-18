@@ -4,32 +4,26 @@ import { getBaseUrlForResource } from '../helpers/getBaseUrlForResource'
 import { xmlParser } from '../helpers/xmlParser'
 import type { ResourceName } from '../types'
 
-interface TimeoutOptions {
-  controller: AbortController
-  timeout: number // in milliseconds
-}
-
 const DEFAULT_TIMEOUT = 10000 // milliseconds
 
-export function getBggApiClient(resource: ResourceName, timeoutOptions?: TimeoutOptions) {
-  const { controller, timeout } = timeoutOptions || { controller: new AbortController(), timeout: DEFAULT_TIMEOUT }
+export function getBggApiClient(resource: ResourceName, timeout?: number) {
+  const controller = new AbortController()
   const apiFetch = ofetch.create({
     baseURL: getBaseUrlForResource(resource),
     headers: {
       'Content-Type': 'text/xml',
     },
-    responseType: 'blob',
+    responseType: 'text',
     signal: controller.signal,
-    async onResponse(context: FetchContext & { response: FetchResponse<'blob'> }) {
-      const responseText = await context.response.text()
-      context.response._data = await xmlParser.parse(responseText)
+    async onResponse({ response }: FetchContext & { response: FetchResponse<'text'> }) {
+      response._data = await xmlParser.parse(response._data)
     },
   })
 
   return {
-    async get<T>(options?: FetchOptions<'blob'>) {
-      const timeoutId = setTimeout(() => controller.abort(), timeout)
-      const response = await apiFetch<T, 'blob'>(resource, options)
+    async get<T>(url: string, options?: FetchOptions<'json'>) {
+      const timeoutId = setTimeout(() => controller.abort(), timeout || DEFAULT_TIMEOUT)
+      const response = await apiFetch<T, 'json'>(url, options)
       clearTimeout(timeoutId)
       return response
     },

@@ -1,7 +1,5 @@
 /* istanbul ignore file */
 // TODO: get known what is it and test properly!
-
-import type { AxiosResponse } from 'axios'
 import { bggXmlApiClient } from '../client'
 
 export interface BggForumlistParams {
@@ -16,6 +14,6 @@ export interface BggForumlistResponse {
   [prop: string]: any
 }
 
-export function getBggForumlist(params: BggForumlistParams): Promise<AxiosResponse<BggForumlistResponse>> {
+export function getBggForumlist(params: BggForumlistParams): Promise<BggForumlistResponse> {
   return bggXmlApiClient.get('forumlist', params)
 }

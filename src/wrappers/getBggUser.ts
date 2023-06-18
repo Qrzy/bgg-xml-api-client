@@ -1,4 +1,3 @@
-import type { AxiosResponse } from 'axios'
 import bggXmlApiClient from '../client'
 import type { OneOrNothing } from '../types'
 
@@ -19,6 +18,6 @@ export interface BggUserResponse {
   [prop: string]: any
 }
 
-export function getBggUser(params: BggUserParams): Promise<AxiosResponse<BggUserResponse>> {
+export function getBggUser(params: BggUserParams): Promise<BggUserResponse> {
   return bggXmlApiClient.get('user', params)
 }

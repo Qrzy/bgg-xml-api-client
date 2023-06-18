@@ -1,4 +1,3 @@
-import type { AxiosResponse } from 'axios'
 import { bggXmlApiClient } from '../client'
 
 export interface BggPlaysParams {
@@ -18,7 +17,7 @@ export interface BggPlaysResponse {
   [prop: string]: any
 }
 
-export function getBggPlays(params: BggPlaysParams): Promise<AxiosResponse<BggPlaysResponse>> {
+export function getBggPlays(params: BggPlaysParams): Promise<BggPlaysResponse> {
   if (!params.username && !(params.id && params.type))
     throw new Error('You must specify either username or id and type')
 
