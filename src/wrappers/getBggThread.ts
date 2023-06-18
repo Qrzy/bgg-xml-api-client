@@ -1,4 +1,3 @@
-import type { AxiosResponse } from 'axios'
 import { bggXmlApiClient } from '../client'
 
 export interface BggThreadParams {
@@ -15,6 +14,6 @@ export interface BggThreadResponse {
   [prop: string]: any
 }
 
-export function getBggThread(params: BggThreadParams): Promise<AxiosResponse<BggThreadResponse>> {
+export function getBggThread(params: BggThreadParams): Promise<BggThreadResponse> {
   return bggXmlApiClient.get('thread', params)
 }

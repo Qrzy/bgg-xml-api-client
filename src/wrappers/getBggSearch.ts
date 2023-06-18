@@ -1,4 +1,3 @@
-import type { AxiosResponse } from 'axios'
 import { bggXmlApiClient } from '../client'
 import type { OneOrNothing } from '../types'
 
@@ -17,7 +16,7 @@ export interface BggSearchResponse {
   [prop: string]: any
 }
 
-export function getBggSearch(params: BggSearchParams): Promise<AxiosResponse<BggSearchResponse>> {
+export function getBggSearch(params: BggSearchParams): Promise<BggSearchResponse> {
   const newParams = {
     ...params,
     ...(params.type && { type: Array.isArray(params.type) ? params.type.join(',') : params.type }),

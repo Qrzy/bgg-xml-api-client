@@ -1,4 +1,3 @@
-import type { AxiosResponse } from 'axios'
 import { bggXmlApiClient } from '../client'
 
 export interface BggHotParams {
@@ -20,6 +19,6 @@ export interface BggHotResponse {
   [prop: string]: any
 }
 
-export function getBggHot(params: BggHotParams): Promise<AxiosResponse<BggHotResponse>> {
+export function getBggHot(params: BggHotParams): Promise<BggHotResponse> {
   return bggXmlApiClient.get('hot', params)
 }

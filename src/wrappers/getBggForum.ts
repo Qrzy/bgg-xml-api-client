@@ -1,4 +1,3 @@
-import type { AxiosResponse } from 'axios'
 import { bggXmlApiClient } from '../client'
 
 export interface BggForumParams {
@@ -13,6 +12,6 @@ export interface BggForumResponse {
   [prop: string]: any
 }
 
-export function getBggForum(params: BggForumParams): Promise<AxiosResponse<BggForumResponse>> {
+export function getBggForum(params: BggForumParams): Promise<BggForumResponse> {
   return bggXmlApiClient.get('forum', params)
 }

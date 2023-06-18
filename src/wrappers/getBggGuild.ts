@@ -1,4 +1,3 @@
-import type { AxiosResponse } from 'axios'
 import { bggXmlApiClient } from '../client'
 import type { OneOrNothing } from '../types'
 
@@ -16,6 +15,6 @@ export interface BggGuildResponse {
   [prop: string]: any
 }
 
-export function getBggGuild(params: BggGuildParams): Promise<AxiosResponse<BggGuildResponse>> {
+export function getBggGuild(params: BggGuildParams): Promise<BggGuildResponse> {
   return bggXmlApiClient.get('guild', params)
 }
