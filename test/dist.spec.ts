@@ -84,7 +84,7 @@ describe('bggXmlApiClient client wrappers', () => {
     it('gets plays with given username', async () => {
       const response = await getBggPlays({ username: 'Qrzy88' })
       expect(response.plays.username).toEqual('Qrzy88')
-      expect(response.plays.userid).toEqual('1381959')
+      expect(response.plays.userid).toEqual(1381959)
     })
 
     it('throws when necessary params are not given', async () => {
@@ -145,7 +145,7 @@ describe('bggXmlApiClient client wrappers', () => {
   describe('getBggUser', () => {
     it('gets user with given name', async () => {
       const response = await getBggUser({ name: 'Qrzy88' })
-      expect(response.user.id).toEqual('1381959')
+      expect(response.user.id).toEqual(1381959)
     })
   })
 })

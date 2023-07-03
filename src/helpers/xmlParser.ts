@@ -1,15 +1,18 @@
-import { parse } from 'fast-xml-parser'
+import type { X2jOptions, validationOptions } from 'fast-xml-parser'
+import { XMLParser } from 'fast-xml-parser'
 import type { XmlParser, XmlString } from '../types'
 
-const options = {
-  attributeNamePrefix: '',
-  textNodeName: 'text',
-  ignoreAttributes: false,
-  ignoreNameSpace: true,
+const options: Partial<validationOptions & X2jOptions> = {
   allowBooleanAttributes: true,
-  // ignoreRootElement: true, // TODO: awaiting https://github.com/NaturalIntelligence/fast-xml-parser/issues/282
+  attributeNamePrefix: '',
+  ignoreAttributes: false,
+  ignoreDeclaration: true,
+  parseAttributeValue: true,
+  textNodeName: 'text',
 }
 
+const parser = new XMLParser(options)
+
 export const xmlParser: XmlParser = {
-  parse: (xmlString: XmlString) => parse(xmlString, options),
+  parse: (xmlString: XmlString) => parser.parse(xmlString),
 }
