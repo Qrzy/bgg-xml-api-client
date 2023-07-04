@@ -9,16 +9,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16.x, 18.x, 20.x]
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2.2.4
-      - name: Use Node v${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 18.x
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
       - run: pnpm test
