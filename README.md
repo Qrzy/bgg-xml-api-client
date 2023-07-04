@@ -1,17 +1,16 @@
 # BGG XML API Client
 
 It's a simple library providing just a single function that returns requested BGG data as a JavaScript object.
-It uses [axios](https://github.com/axios/axios) under the hood, so the return value is wrapped with `AxiosResponse` - just to provide all the data about the response from API.
-The main data sits in `data` property of that response object.
+It uses [ofetch](https://github.com/unjs/ofetch) under the hood.
 
 ## Example usage:
 
 ```js
 import bggXmlApiClient from 'bgg-xml-api-client'
 
-const { data } = await bggXmlApiClient.get('user', { name: 'Qrzy88' })
+const response = await bggXmlApiClient.get('user', { name: 'Qrzy88' })
 
-console.log(data.id) // displays: 1381959
+console.log(response.id) // displays: 1381959
 ```
 
 `bggXmlApiClient` takes 2 parameters:
