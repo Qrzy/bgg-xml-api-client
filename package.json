@@ -45,9 +45,7 @@
     "build": "unbuild",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "preversion": "pnpm lint:fix && pnpm test && pnpm build",
-    "version": "git add -A src",
-    "postversion": "git push && git push --tags"
+    "prepublishOnly": "pnpm build"
   },
   "dependencies": {
     "axios": "0.25.0",
