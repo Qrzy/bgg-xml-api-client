@@ -49,10 +49,8 @@
     "rel": "bumpp"
   },
   "dependencies": {
-    "axios": "0.25.0",
     "fast-xml-parser": "^4.2.4",
-    "ofetch": "^1.1.0",
-    "setimmediate": "^1.0.5"
+    "ofetch": "^1.1.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.39.5",
