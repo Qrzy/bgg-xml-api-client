@@ -6,11 +6,47 @@ export interface GeeklistParams {
   comments?: OneOrNothing
 }
 
-// TODO: specify this interface
+interface GeeklistItemComment {
+  text: string
+  username: string
+  date: string
+  postdate: string
+  editdate: string
+  thumbs: number
+  [prop: string]: unknown
+}
 
 export interface GeeklistResponse {
-
-  [prop: string]: any
+  geeklist: {
+    postdate: string
+    postdate_timestamp: number
+    editdate: string
+    editdate_timestamp: number
+    thumbs: number
+    numitems: number
+    username: string
+    title: string
+    description: string
+    item: {
+      body: string
+      comment: GeeklistItemComment | GeeklistItemComment[]
+      id: number
+      objecttype: 'thing' | string
+      subtype: 'boardgame' | 'boardgameaccessory' | string
+      objectid: number
+      objectname: string
+      username: string
+      postdate: string
+      editdate: string
+      thumbs: number
+      imageid: number
+      [prop: string]: unknown
+    }[]
+    id: number
+    termsofuse: string
+    [prop: string]: unknown
+  }
+  [prop: string]: unknown
 }
 
 export function getBggGeeklist(params: GeeklistParams): Promise<GeeklistResponse> {

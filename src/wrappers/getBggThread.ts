@@ -11,7 +11,7 @@ export interface BggThreadParams {
 
 export interface BggThreadResponse {
 
-  [prop: string]: any
+  [prop: string]: unknown
 }
 
 export function getBggThread(params: BggThreadParams): Promise<BggThreadResponse> {
