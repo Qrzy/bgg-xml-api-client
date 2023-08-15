@@ -1,4 +1,5 @@
 import { bggXmlApiClient } from '../client'
+import type { OfValue } from '../types'
 
 export interface BggPlaysParams {
   username?: string
@@ -10,11 +11,35 @@ export interface BggPlaysParams {
   page?: number
 }
 
-// TODO: specify this interface
-
 export interface BggPlaysResponse {
-
-  [prop: string]: any
+  plays: {
+    play: {
+      item: {
+        subtypes: {
+          subtype: OfValue<string> | OfValue<string>[]
+        }
+        name: string
+        objecttype: 'thing' | string
+        objectid: number
+        [prop: string]: unknown
+      }
+      id: number
+      date: string
+      quantity: number
+      length: number
+      incomplete: number
+      nowinstats: number
+      location: string
+      [prop: string]: unknown
+    }[]
+    username: string
+    userid: number
+    total: number
+    page: number
+    termsofuse: string
+    [prop: string]: unknown
+  }
+  [prop: string]: unknown
 }
 
 export function getBggPlays(params: BggPlaysParams): Promise<BggPlaysResponse> {

@@ -31,6 +31,12 @@ export type ResourceName =
 
 export type OneOrNothing = 1 | undefined
 
+export type SingleOrMany<T> = T | T[]
+
+export interface OfValue<T = any> {
+  value: T
+}
+
 export type ThingType =
   | 'boardgame'
   | 'boardgameexpansion'

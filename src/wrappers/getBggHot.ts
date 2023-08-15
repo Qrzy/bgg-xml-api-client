@@ -1,4 +1,5 @@
 import { bggXmlApiClient } from '../client'
+import type { OfValue } from '../types'
 
 export interface BggHotParams {
   type:
@@ -12,11 +13,20 @@ export interface BggHotParams {
   | 'videogamecompany'
 }
 
-// TODO: specify this interface
-
 export interface BggHotResponse {
-
-  [prop: string]: any
+  items: {
+    item: {
+      thumbnail: OfValue<string>
+      name: OfValue<string>
+      yearpublished?: OfValue<number>
+      id: number
+      rank: number
+      [prop: string]: unknown
+    }[]
+    termsofuse: string
+    [prop: string]: unknown
+  }
+  [prop: string]: unknown
 }
 
 export function getBggHot(params: BggHotParams): Promise<BggHotResponse> {

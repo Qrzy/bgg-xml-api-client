@@ -8,11 +8,37 @@ export interface BggGuildParams {
   page?: number
 }
 
-// TODO: specify this interface
-
 export interface BggGuildResponse {
-
-  [prop: string]: any
+  guild: {
+    category: string
+    website: string
+    manager: string
+    description: string
+    location: {
+      addr1: string
+      addr2: string
+      city: string
+      stateorprovince: string
+      postalcode: string
+      country: string
+      [prop: string]: unknown
+    }
+    members: {
+      member: {
+        name: string
+        date: string
+        [prop: string]: unknown
+      }[]
+      count: number
+      page: number
+    }
+    id: number
+    name: string
+    created: string
+    termsofuse: string
+    [prop: string]: unknown
+  }
+  [prop: string]: unknown
 }
 
 export function getBggGuild(params: BggGuildParams): Promise<BggGuildResponse> {

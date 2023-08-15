@@ -1,5 +1,6 @@
 /* istanbul ignore file */
 // TODO: get known what is it and test properly!
+
 import { bggXmlApiClient } from '../client'
 
 export interface BggForumlistParams {
@@ -7,11 +8,9 @@ export interface BggForumlistParams {
   type?: 'thing' | 'family'
 }
 
-// TODO: specify this interface
-
 export interface BggForumlistResponse {
-
-  [prop: string]: any
+  // TODO: specify this interface
+  [prop: string]: unknown
 }
 
 export function getBggForumlist(params: BggForumlistParams): Promise<BggForumlistResponse> {
