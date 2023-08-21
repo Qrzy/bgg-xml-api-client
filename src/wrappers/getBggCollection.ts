@@ -92,7 +92,7 @@ export interface BggCollectionResponse {
       preordered: ZeroOrOne
       lastmodified: string
     }
-    numlpays: number
+    numplays: number
     version?: {
       item: {
         thumbnail: string
