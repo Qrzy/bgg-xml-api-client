@@ -14,18 +14,15 @@ export interface BggHotParams {
 }
 
 export interface BggHotResponse {
-  items: {
-    item: {
-      thumbnail: OfValue<string>
-      name: OfValue<string>
-      yearpublished?: OfValue<number>
-      id: number
-      rank: number
-      [prop: string]: unknown
-    }[]
-    termsofuse: string
+  item: {
+    thumbnail: OfValue<string>
+    name: OfValue<string>
+    yearpublished?: OfValue<number>
+    id: number
+    rank: number
     [prop: string]: unknown
-  }
+  }[]
+  termsofuse: string
   [prop: string]: unknown
 }
 

@@ -17,35 +17,32 @@ interface GeeklistItemComment {
 }
 
 export interface GeeklistResponse {
-  geeklist: {
-    postdate: string
-    postdate_timestamp: number
-    editdate: string
-    editdate_timestamp: number
-    thumbs: number
-    numitems: number
-    username: string
-    title: string
-    description: string
-    item: {
-      body: string
-      comment: GeeklistItemComment | GeeklistItemComment[]
-      id: number
-      objecttype: 'thing' | string
-      subtype: 'boardgame' | 'boardgameaccessory' | string
-      objectid: number
-      objectname: string
-      username: string
-      postdate: string
-      editdate: string
-      thumbs: number
-      imageid: number
-      [prop: string]: unknown
-    }[]
+  postdate: string
+  postdate_timestamp: number
+  editdate: string
+  editdate_timestamp: number
+  thumbs: number
+  numitems: number
+  username: string
+  title: string
+  description: string
+  item: {
+    body: string
+    comment: GeeklistItemComment | GeeklistItemComment[]
     id: number
-    termsofuse: string
+    objecttype: 'thing' | string
+    subtype: 'boardgame' | 'boardgameaccessory' | string
+    objectid: number
+    objectname: string
+    username: string
+    postdate: string
+    editdate: string
+    thumbs: number
+    imageid: number
     [prop: string]: unknown
-  }
+  }[]
+  id: number
+  termsofuse: string
   [prop: string]: unknown
 }
 

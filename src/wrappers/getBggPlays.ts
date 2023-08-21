@@ -12,33 +12,30 @@ export interface BggPlaysParams {
 }
 
 export interface BggPlaysResponse {
-  plays: {
-    play: {
-      item: {
-        subtypes: {
-          subtype: OfValue<string> | OfValue<string>[]
-        }
-        name: string
-        objecttype: 'thing' | string
-        objectid: number
-        [prop: string]: unknown
+  play: {
+    item: {
+      subtypes: {
+        subtype: OfValue<string> | OfValue<string>[]
       }
-      id: number
-      date: string
-      quantity: number
-      length: number
-      incomplete: number
-      nowinstats: number
-      location: string
+      name: string
+      objecttype: 'thing' | string
+      objectid: number
       [prop: string]: unknown
-    }[]
-    username: string
-    userid: number
-    total: number
-    page: number
-    termsofuse: string
+    }
+    id: number
+    date: string
+    quantity: number
+    length: number
+    incomplete: number
+    nowinstats: number
+    location: string
     [prop: string]: unknown
-  }
+  }[]
+  username: string
+  userid: number
+  total: number
+  page: number
+  termsofuse: string
   [prop: string]: unknown
 }
 

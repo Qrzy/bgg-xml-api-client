@@ -4,7 +4,7 @@ import { getBggGeeklist } from '../../src/wrappers'
 describe('getBggGeeklist', () => {
   it('gets geeklist with given ID', async () => {
     const response = await getBggGeeklist({ id: 272940, comments: 1 })
-    expect(response.geeklist).toHaveProperty('item')
-    expect(response.geeklist.item).toBeInstanceOf(Array)
+    expect(response).toHaveProperty('item')
+    expect(response.item).toBeInstanceOf(Array)
   })
 })

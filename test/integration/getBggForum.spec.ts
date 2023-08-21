@@ -4,8 +4,8 @@ import { getBggForum } from '../../src/wrappers'
 describe('getBggForum', () => {
   it('gets forum with given ID', async () => {
     const response = await getBggForum({ id: 19 })
-    expect(response.forum).toHaveProperty('title')
-    expect(response.forum).toHaveProperty('threads')
-    expect(response.forum.threads.thread).toBeInstanceOf(Array)
+    expect(response).toHaveProperty('title')
+    expect(response).toHaveProperty('threads')
+    expect(response.threads.thread).toBeInstanceOf(Array)
   })
 })
