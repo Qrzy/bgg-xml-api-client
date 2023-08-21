@@ -15,7 +15,7 @@ export interface BggThingParams {
   pagesize?: number
 }
 
-type BggThingLinkType =
+export type BggThingLinkType =
   | 'boardgamecategory'
   | 'boardgamemechanic'
   | 'boardgamefamily'
@@ -28,7 +28,7 @@ type BggThingLinkType =
   | 'boardgamepublisher'
   | string
 
-type BggVideogameLinkType =
+export type BggVideogameLinkType =
   | 'videogameplatform'
   | 'videogamegenre'
   | 'videogametheme'
@@ -39,7 +39,7 @@ type BggVideogameLinkType =
   | 'videogamepublisher'
   | string
 
-type BggRpgitemLinkType =
+export type BggRpgitemLinkType =
   | 'rpg'
   | 'rpggenre'
   | 'rpgcategory'
@@ -50,20 +50,20 @@ type BggRpgitemLinkType =
   | 'rpgproducer'
   | string
 
-interface BggThingName {
+export interface BggThingName {
   type: 'primary' | 'alternate' | string
   sortindex: number
   value: string
 }
 
-interface BggThingLink<T = BggThingLinkType> {
+export interface BggThingLink<T = BggThingLinkType> {
   type: T
   id: number
   value: string
   [prop: string]: unknown
 }
 
-interface BggThingVideo {
+export interface BggThingVideo {
   id: number
   title: string
   category: 'instructional' | 'unboxing' | 'review' | 'humor' | 'session' | 'interview' | 'other' | string
@@ -75,7 +75,7 @@ interface BggThingVideo {
   [prop: string]: unknown
 }
 
-interface BggThingMarketplaceListing {
+export interface BggThingMarketplaceListing {
   listdate: OfValue<string>
   price: {
     currency: string
@@ -90,7 +90,7 @@ interface BggThingMarketplaceListing {
   [prop: string]: unknown
 }
 
-interface BggThingItemBase {
+export interface BggThingItemBase {
   thumbnail: string
   image: string
   name: SingleOrMany<BggThingName>
@@ -111,7 +111,7 @@ interface BggThingItemBase {
   }
 }
 
-interface BggBoardgameItem extends BggThingItemBase {
+export interface BggBoardgameItem extends BggThingItemBase {
   yearpublished: OfValue<number>
   minplayers: OfValue<number>
   maxplayers: OfValue<number>
@@ -178,11 +178,11 @@ interface BggBoardgameItem extends BggThingItemBase {
   [prop: string]: unknown
 }
 
-type BggBoardgameexpansionItem = BggBoardgameItem & {
+export type BggBoardgameexpansionItem = BggBoardgameItem & {
   type: 'boardgameexpansion'
 }
 
-interface BggBoardgameaccessoryItem extends BggThingItemBase {
+export interface BggBoardgameaccessoryItem extends BggThingItemBase {
   yearpublished: OfValue<number>
   link: SingleOrMany<BggThingLink>
   versions?: {
@@ -202,7 +202,7 @@ interface BggBoardgameaccessoryItem extends BggThingItemBase {
   [prop: string]: unknown
 }
 
-interface BggVideogameItem extends BggThingItemBase {
+export interface BggVideogameItem extends BggThingItemBase {
   link: SingleOrMany<BggThingLink<BggVideogameLinkType>>
   minplayers: OfValue<number>
   maxplayers: OfValue<number>
@@ -224,7 +224,7 @@ interface BggVideogameItem extends BggThingItemBase {
   [prop: string]: unknown
 }
 
-interface BggRpgitemItem extends BggThingItemBase {
+export interface BggRpgitemItem extends BggThingItemBase {
   link: SingleOrMany<BggThingLink<BggRpgitemLinkType>>
   yearpublished: OfValue<number>
   seriescode: OfValue<string>
@@ -262,11 +262,8 @@ interface BggRpgitemItem extends BggThingItemBase {
 }
 
 export interface BggThingResponse {
-  items: {
-    item: SingleOrMany<BggBoardgameItem | BggBoardgameexpansionItem | BggBoardgameaccessoryItem | BggVideogameItem | BggRpgitemItem | unknown>
-    termsofuse: string
-    [prop: string]: unknown
-  }
+  item: SingleOrMany<BggBoardgameItem | BggBoardgameexpansionItem | BggBoardgameaccessoryItem | BggVideogameItem | BggRpgitemItem | unknown>
+  termsofuse: string
   [prop: string]: unknown
 }
 

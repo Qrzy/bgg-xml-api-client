@@ -10,21 +10,18 @@ export interface BggSearchParams {
 }
 
 export interface BggSearchResponse {
-  items: {
-    item: {
-      name: {
-        type: 'primary' | string
-        value: string
-      }
-      yearpublished?: OfValue<number>
-      type: 'boardgame' | 'boardgameexpansion' | 'rpgitem' | 'videogame' | string
-      id: number
-      [prop: string]: unknown
-    }[]
-    total: number
-    termsofuse: string
+  item: {
+    name: {
+      type: 'primary' | string
+      value: string
+    }
+    yearpublished?: OfValue<number>
+    type: 'boardgame' | 'boardgameexpansion' | 'rpgitem' | 'videogame' | string
+    id: number
     [prop: string]: unknown
-  }
+  }[]
+  total: number
+  termsofuse: string
   [prop: string]: unknown
 }
 

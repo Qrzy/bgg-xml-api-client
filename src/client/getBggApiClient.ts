@@ -16,7 +16,9 @@ export function getBggApiClient(resource: ResourceName, timeout?: number) {
     responseType: 'text',
     signal: controller.signal,
     async onResponse({ response }: FetchContext & { response: FetchResponse<'text'> }) {
-      response._data = await xmlParser.parse(response._data)
+      // get rid of the very root element of the response
+      const parsedResponse: any = await xmlParser.parse(response._data)
+      response._data = parsedResponse[Object.keys(parsedResponse).shift()!]
     },
   })
 

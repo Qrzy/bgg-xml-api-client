@@ -5,7 +5,7 @@ import type { GeeklistResponse } from '../../src'
 describe('bggXmlApiClient client', () => {
   it('gets geeklist with given ID', async () => {
     const response = await bggXmlApiClient.get<GeeklistResponse>('geeklist', { id: 272940, comments: 1 })
-    expect(response.geeklist).toHaveProperty('title')
-    expect(response.geeklist.title).toEqual('#36,5 Polski MatHandel (Polish Math Trade)')
+    expect(response).toHaveProperty('title')
+    expect(response.title).toEqual('#36,5 Polski MatHandel (Polish Math Trade)')
   })
 })

@@ -1,34 +1,34 @@
 import { bggXmlApiClient } from '../client'
-import type { BggFamilyType } from '../types'
+import type { BggFamilyType, SingleOrMany } from '../types'
 
 export interface BggFamilyParams {
   id?: number | number[] | string
   type?: BggFamilyType
 }
 
+interface NewType {
+  type: 'primary' | string
+  sortindex: number
+  value: string
+}
+
 export interface BggFamilyResponse {
-  items: {
-    item: {
-      thumbnail: string
-      image: string
-      name: {
-        type: 'primary' | string
-        sortindex: number
-        value: string
-      }
-      description: string
-      link: {
-        type: 'boardgamefamily' | string
-        id: number
-        value: string
-        inbound: boolean
-      }[]
+  item: SingleOrMany<{
+    thumbnail: string
+    image: string
+    name: NewType
+    description: string
+    link: {
       type: 'boardgamefamily' | string
-      [prop: string]: unknown
-    }
-    termsofuse: string
+      id: number
+      value: string
+      inbound: boolean
+    }[]
+    type: 'boardgamefamily' | string
     [prop: string]: unknown
-  }
+  }>
+  termsofuse: string
+  [prop: string]: unknown
 }
 
 export function getBggFamily(params: BggFamilyParams): Promise<BggFamilyResponse> {

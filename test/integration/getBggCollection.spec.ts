@@ -3,21 +3,21 @@ import { getBggCollection } from '../../src/wrappers'
 
 describe('getBggCollection', () => {
   it('gets collection with given username', async () => {
-    const { items } = await getBggCollection({ username: 'Qrzy88' })
-    expect(items).toHaveProperty('item')
-    expect(items.item).toBeInstanceOf(Array)
+    const response = await getBggCollection({ username: 'Qrzy88' })
+    expect(response).toHaveProperty('item')
+    expect(response.item).toBeInstanceOf(Array)
   })
 
   it('gets collection with given ID', async () => {
-    const { items } = await getBggCollection({ username: 'Qrzy88', id: 173346 })
-    expect(items).toHaveProperty('item')
-    expect(items.item).toBeInstanceOf(Object)
+    const response = await getBggCollection({ username: 'Qrzy88', id: 173346 })
+    expect(response).toHaveProperty('item')
+    expect(response.item).toBeInstanceOf(Object)
   })
 
   it('gets collection with list of IDs', async () => {
-    const { items } = await getBggCollection({ username: 'Qrzy88', id: [173346, 202976] })
-    expect(items).toHaveProperty('item')
-    expect(items.item).toBeInstanceOf(Array)
-    expect(items.item.length).toEqual(2)
+    const response = await getBggCollection({ username: 'Qrzy88', id: [173346, 202976] })
+    expect(response).toHaveProperty('item')
+    expect(response.item).toBeInstanceOf(Array)
+    expect(response.item.length).toEqual(2)
   })
 })
