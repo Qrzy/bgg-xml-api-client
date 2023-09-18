@@ -18,7 +18,7 @@ export const bggXmlApiClient = {
       try {
         const resourceUrl = createResourceUrl(resource, queryParams)
         const response = await client.get<T>(resourceUrl)
-        if (response && (response as string).includes('processed'))
+        if (typeof response === 'string' && (response as string).includes('processed'))
           throw new Error('processing...')
 
         return response
