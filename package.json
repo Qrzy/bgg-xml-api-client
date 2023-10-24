@@ -41,6 +41,7 @@
   ],
   "scripts": {
     "nodetest": "node --version",
+    "playground": "cd playground && pnpm i && pnpm run dev",
     "test": "vitest",
     "build": "unbuild",
     "lint": "eslint .",
