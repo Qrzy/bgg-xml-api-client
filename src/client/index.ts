@@ -1,30 +1,50 @@
 /* istanbul ignore file */
+import { ofetch } from 'ofetch'
 import { createResourceUrl } from '../helpers/createResourceUrl'
-import type { BggParams, ResourceName } from '../types'
-import { getBggApiClient } from './getBggApiClient'
+import type { BggParams, ClientOptions, ResourceName } from '../types'
+import { xmlParser } from '../helpers/xmlParser'
+import { getBaseUrlForResource } from '../helpers/getBaseUrlForResource'
 
 export const DEFAULT_MAX_RETRIES = 10
 export const DEFAULT_INTERVAL = 5000
+export const DEFAULT_TIMEOUT = 10000 // milliseconds
 
 export const bggXmlApiClient = {
   get: async <T = unknown>(
     resource: ResourceName,
     queryParams: BggParams,
-    maxRetries: number = DEFAULT_MAX_RETRIES,
-    retryInterval: number = DEFAULT_INTERVAL,
+    {
+      maxRetries = DEFAULT_MAX_RETRIES,
+      retryInterval = DEFAULT_INTERVAL,
+      timeout = DEFAULT_TIMEOUT,
+    }: Partial<ClientOptions> = {},
   ): Promise<T> => {
-    const client = getBggApiClient(resource)
+    const apiFetch = ofetch.create({
+      baseURL: getBaseUrlForResource(resource),
+      headers: {
+        'Content-Type': 'text/xml',
+      },
+      responseType: 'text',
+      onResponse(context) {
+        if (context.response.status === 202)
+          throw new Error('processing...')
+      },
+    })
+
     for (let i = 0; i < maxRetries; i++) {
       try {
         const resourceUrl = createResourceUrl(resource, queryParams)
-        const response = await client.get<T>(resourceUrl)
-        if (typeof response === 'string' && (response as string).includes('processed'))
-          throw new Error('processing...')
-
-        return response
+        const response = await apiFetch<T, 'text'>(resourceUrl, { timeout })
+        const parsedResponse = xmlParser.parse<{ [key: string]: T }>(response)
+        return parsedResponse[Object.keys(parsedResponse).shift()!]
       }
       catch (err) {
-        await new Promise<void>(resolve => setTimeout(() => resolve(), retryInterval))
+        if (err instanceof Error && err.message === 'processing...')
+          // BGG API is still processing the request, retry after a while
+          await new Promise<void>(resolve => setTimeout(() => resolve(), retryInterval))
+        else
+          // an actual error occurred, throw it
+          throw err
       }
     }
 

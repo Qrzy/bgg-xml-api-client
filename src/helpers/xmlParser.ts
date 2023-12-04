@@ -14,5 +14,5 @@ const options: Partial<validationOptions & X2jOptions> = {
 const parser = new XMLParser(options)
 
 export const xmlParser: XmlParser = {
-  parse: (xmlString: XmlString) => parser.parse(xmlString),
+  parse: <T = unknown>(xmlString: XmlString): T => parser.parse(xmlString),
 }

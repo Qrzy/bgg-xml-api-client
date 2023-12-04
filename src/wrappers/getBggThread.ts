@@ -1,4 +1,5 @@
 import { bggXmlApiClient } from '../client'
+import type { ClientOptions } from '../types'
 
 export interface BggThreadParams {
   id?: number
@@ -14,6 +15,6 @@ export interface BggThreadResponse {
   [prop: string]: unknown
 }
 
-export function getBggThread(params: BggThreadParams): Promise<BggThreadResponse> {
-  return bggXmlApiClient.get('thread', params)
+export function getBggThread(params: BggThreadParams, settings: Partial<ClientOptions> = {}): Promise<BggThreadResponse> {
+  return bggXmlApiClient.get('thread', params, settings)
 }

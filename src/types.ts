@@ -29,6 +29,12 @@ export type ResourceName =
   | 'hot'
   | 'search'
 
+export interface ClientOptions {
+  maxRetries: number
+  retryInterval: number
+  timeout: number
+}
+
 export type OneOrNothing = 1 | undefined
 
 export type SingleOrMany<T> = T | T[]
@@ -64,5 +70,5 @@ export type BggParams =
 export type XmlString = string
 
 export interface XmlParser {
-  parse: (text: XmlString) => unknown
+  parse: <T = unknown>(text: XmlString) => T
 }

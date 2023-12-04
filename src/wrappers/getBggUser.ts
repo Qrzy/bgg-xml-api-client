@@ -1,5 +1,5 @@
 import bggXmlApiClient from '../client'
-import type { OfValue, OneOrNothing } from '../types'
+import type { ClientOptions, OfValue, OneOrNothing } from '../types'
 
 export interface BggUserParams {
   name?: string
@@ -49,6 +49,6 @@ export interface BggUserResponse {
   [key: string]: any
 }
 
-export function getBggUser(params: BggUserParams): Promise<BggUserResponse> {
-  return bggXmlApiClient.get('user', params)
+export function getBggUser(params: BggUserParams, settings: Partial<ClientOptions> = {}): Promise<BggUserResponse> {
+  return bggXmlApiClient.get('user', params, settings)
 }

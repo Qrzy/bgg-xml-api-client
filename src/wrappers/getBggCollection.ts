@@ -1,5 +1,5 @@
 import { bggXmlApiClient } from '../client'
-import type { OfValue, OneOrNothing } from '../types'
+import type { ClientOptions, OfValue, OneOrNothing } from '../types'
 
 type BggCollectionSubtype =
   | 'boardgame'
@@ -135,6 +135,7 @@ export interface BggCollectionResponse {
 
 export function getBggCollection(
   params: BggCollectionParams,
+  settings: Partial<ClientOptions> = {},
 ): Promise<BggCollectionResponse> {
   const newParams = {
     ...params,
@@ -142,5 +143,5 @@ export function getBggCollection(
       id: Array.isArray(params.id) ? params.id.join(',') : params.id,
     }),
   }
-  return bggXmlApiClient.get('collection', newParams)
+  return bggXmlApiClient.get('collection', newParams, settings)
 }
