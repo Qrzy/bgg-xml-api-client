@@ -1,5 +1,5 @@
 import { bggXmlApiClient } from '../client'
-import type { OfValue } from '../types'
+import type { ClientOptions, OfValue } from '../types'
 
 export interface BggPlaysParams {
   username?: string
@@ -39,9 +39,9 @@ export interface BggPlaysResponse {
   [prop: string]: unknown
 }
 
-export function getBggPlays(params: BggPlaysParams): Promise<BggPlaysResponse> {
+export function getBggPlays(params: BggPlaysParams, settings: Partial<ClientOptions> = {}): Promise<BggPlaysResponse> {
   if (!params.username && !(params.id && params.type))
     throw new Error('You must specify either username or id and type')
 
-  return bggXmlApiClient.get('plays', params)
+  return bggXmlApiClient.get('plays', params, settings)
 }

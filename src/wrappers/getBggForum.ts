@@ -1,4 +1,5 @@
 import { bggXmlApiClient } from '../client'
+import type { ClientOptions } from '../types'
 
 export interface BggForumParams {
   id?: number
@@ -28,6 +29,6 @@ export interface BggForumResponse {
   [prop: string]: unknown
 }
 
-export function getBggForum(params: BggForumParams): Promise<BggForumResponse> {
-  return bggXmlApiClient.get('forum', params)
+export function getBggForum(params: BggForumParams, settings: Partial<ClientOptions> = {}): Promise<BggForumResponse> {
+  return bggXmlApiClient.get('forum', params, settings)
 }

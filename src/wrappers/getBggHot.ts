@@ -1,5 +1,5 @@
 import { bggXmlApiClient } from '../client'
-import type { OfValue } from '../types'
+import type { ClientOptions, OfValue } from '../types'
 
 export interface BggHotParams {
   type:
@@ -26,6 +26,6 @@ export interface BggHotResponse {
   [prop: string]: unknown
 }
 
-export function getBggHot(params: BggHotParams): Promise<BggHotResponse> {
-  return bggXmlApiClient.get('hot', params)
+export function getBggHot(params: BggHotParams, settings: Partial<ClientOptions> = {}): Promise<BggHotResponse> {
+  return bggXmlApiClient.get('hot', params, settings)
 }

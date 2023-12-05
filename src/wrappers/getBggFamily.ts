@@ -1,5 +1,5 @@
 import { bggXmlApiClient } from '../client'
-import type { BggFamilyType, SingleOrMany } from '../types'
+import type { BggFamilyType, ClientOptions, SingleOrMany } from '../types'
 
 export interface BggFamilyParams {
   id?: number | number[] | string
@@ -31,10 +31,10 @@ export interface BggFamilyResponse {
   [prop: string]: unknown
 }
 
-export function getBggFamily(params: BggFamilyParams): Promise<BggFamilyResponse> {
+export function getBggFamily(params: BggFamilyParams, settings: Partial<ClientOptions> = {}): Promise<BggFamilyResponse> {
   const newParams = {
     ...params,
     ...(params.id && { id: Array.isArray(params.id) ? params.id.join(',') : params.id }),
   }
-  return bggXmlApiClient.get('family', newParams)
+  return bggXmlApiClient.get('family', newParams, settings)
 }

@@ -2,6 +2,7 @@
 // TODO: get known what is it and test properly!
 
 import { bggXmlApiClient } from '../client'
+import type { ClientOptions } from '../types'
 
 export interface BggForumlistParams {
   id?: number
@@ -13,6 +14,6 @@ export interface BggForumlistResponse {
   [prop: string]: unknown
 }
 
-export function getBggForumlist(params: BggForumlistParams): Promise<BggForumlistResponse> {
-  return bggXmlApiClient.get('forumlist', params)
+export function getBggForumlist(params: BggForumlistParams, settings: Partial<ClientOptions> = {}): Promise<BggForumlistResponse> {
+  return bggXmlApiClient.get('forumlist', params, settings)
 }

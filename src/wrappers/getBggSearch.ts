@@ -1,5 +1,5 @@
 import { bggXmlApiClient } from '../client'
-import type { OfValue, OneOrNothing } from '../types'
+import type { ClientOptions, OfValue, OneOrNothing } from '../types'
 
 export type SearchType = 'rpgitem' | 'videogame' | 'boardgame' | 'boardgameaccessory' | 'boardgameexpansion'
 
@@ -25,10 +25,10 @@ export interface BggSearchResponse {
   [prop: string]: unknown
 }
 
-export function getBggSearch(params: BggSearchParams): Promise<BggSearchResponse> {
+export function getBggSearch(params: BggSearchParams, settings: Partial<ClientOptions> = {}): Promise<BggSearchResponse> {
   const newParams = {
     ...params,
     ...(params.type && { type: Array.isArray(params.type) ? params.type.join(',') : params.type }),
   }
-  return bggXmlApiClient.get('search', newParams)
+  return bggXmlApiClient.get('search', newParams, settings)
 }

@@ -1,5 +1,5 @@
 import { bggXmlApiClient } from '../client'
-import type { OfValue, OneOrNothing, SingleOrMany, ThingType } from '../types'
+import type { ClientOptions, OfValue, OneOrNothing, SingleOrMany, ThingType } from '../types'
 
 export interface BggThingParams {
   id?: number | number[] | string
@@ -267,11 +267,11 @@ export interface BggThingResponse {
   [prop: string]: unknown
 }
 
-export function getBggThing(params: BggThingParams): Promise<BggThingResponse> {
+export function getBggThing(params: BggThingParams, settings: Partial<ClientOptions> = {}): Promise<BggThingResponse> {
   const newParams = {
     ...params,
     ...(params.id && { id: Array.isArray(params.id) ? params.id.join(',') : params.id }),
     ...(params.type && { type: Array.isArray(params.type) ? params.type.join(',') : params.type }),
   }
-  return bggXmlApiClient.get('thing', newParams)
+  return bggXmlApiClient.get('thing', newParams, settings)
 }

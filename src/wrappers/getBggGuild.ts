@@ -1,5 +1,5 @@
 import { bggXmlApiClient } from '../client'
-import type { OneOrNothing } from '../types'
+import type { ClientOptions, OneOrNothing } from '../types'
 
 export interface BggGuildParams {
   id?: number
@@ -38,6 +38,6 @@ export interface BggGuildResponse {
   [prop: string]: unknown
 }
 
-export function getBggGuild(params: BggGuildParams): Promise<BggGuildResponse> {
-  return bggXmlApiClient.get('guild', params)
+export function getBggGuild(params: BggGuildParams, settings: Partial<ClientOptions> = {}): Promise<BggGuildResponse> {
+  return bggXmlApiClient.get('guild', params, settings)
 }

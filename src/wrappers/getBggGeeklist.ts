@@ -1,5 +1,5 @@
 import bggXmlApiClient from '../client'
-import type { OneOrNothing } from '../types'
+import type { ClientOptions, OneOrNothing } from '../types'
 
 export interface GeeklistParams {
   id: number
@@ -46,6 +46,6 @@ export interface GeeklistResponse {
   [prop: string]: unknown
 }
 
-export function getBggGeeklist(params: GeeklistParams): Promise<GeeklistResponse> {
-  return bggXmlApiClient.get('geeklist', params)
+export function getBggGeeklist(params: GeeklistParams, settings: Partial<ClientOptions> = {}): Promise<GeeklistResponse> {
+  return bggXmlApiClient.get('geeklist', params, settings)
 }

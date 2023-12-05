@@ -7,6 +7,6 @@ vi.mock('../../../src/client')
 describe('getBggUser', () => {
   it('gets user with given name', async () => {
     await getBggUser({ name: 'Qrzy88' })
-    expect(bggXmlApiClient.get).toHaveBeenCalledWith('user', { name: 'Qrzy88' })
+    expect(bggXmlApiClient.get).toHaveBeenCalledWith('user', { name: 'Qrzy88' }, {})
   })
 })
