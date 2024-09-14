@@ -30,8 +30,8 @@ export interface GeeklistResponse {
     body: string
     comment: GeeklistItemComment | GeeklistItemComment[]
     id: number
-    objecttype: 'thing' | string
-    subtype: 'boardgame' | 'boardgameaccessory' | string
+    objecttype: 'thing' | (string & {})
+    subtype: 'boardgame' | 'boardgameaccessory' | (string & {})
     objectid: number
     objectname: string
     username: string

@@ -18,7 +18,7 @@ export interface BggPlaysResponse {
         subtype: OfValue<string> | OfValue<string>[]
       }
       name: string
-      objecttype: 'thing' | string
+      objecttype: 'thing' | (string & {})
       objectid: number
       [prop: string]: unknown
     }

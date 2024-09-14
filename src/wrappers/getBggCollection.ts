@@ -63,7 +63,7 @@ export interface BggCollectionResponse {
         median: OfValue<number>
         ranks: {
           rank: {
-            type: 'subtype' | 'family' | string
+            type: 'subtype' | 'family' | (string & {})
             id: number
             name: string
             friendlyname: string
@@ -102,13 +102,13 @@ export interface BggCollectionResponse {
           | 'boardgameversion'
           | 'boardgamepublisher'
           | 'language'
-          | string
+          | (string & {})
           id: number
           value: string
           inbound?: boolean
         }[]
         name: {
-          type: 'primary' | string
+          type: 'primary' | (string & {})
           sortindex: number
           value: string
         }
@@ -118,11 +118,11 @@ export interface BggCollectionResponse {
         length: OfValue<number>
         depth: OfValue<number>
         weight: OfValue<number>
-        type: 'boardgameversion' | string
+        type: 'boardgameversion' | (string & {})
         id: number
       }
     }
-    objecttype: 'thing' | string
+    objecttype: 'thing' | (string & {})
     objectid: number
     subtype: string
     collid: number

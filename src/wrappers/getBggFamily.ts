@@ -7,7 +7,7 @@ export interface BggFamilyParams {
 }
 
 interface NewType {
-  type: 'primary' | string
+  type: 'primary' | (string & {})
   sortindex: number
   value: string
 }
@@ -19,12 +19,12 @@ export interface BggFamilyResponse {
     name: NewType
     description: string
     link: {
-      type: 'boardgamefamily' | string
+      type: 'boardgamefamily' | (string & {})
       id: number
       value: string
       inbound: boolean
     }[]
-    type: 'boardgamefamily' | string
+    type: 'boardgamefamily' | (string & {})
     [prop: string]: unknown
   }>
   termsofuse: string

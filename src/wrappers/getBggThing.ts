@@ -26,7 +26,7 @@ export type BggThingLinkType =
   | 'boardgamedesigner'
   | 'boardgameartist'
   | 'boardgamepublisher'
-  | string
+  | (string & {})
 
 export type BggVideogameLinkType =
   | 'videogameplatform'
@@ -37,7 +37,7 @@ export type BggVideogameLinkType =
   | 'videogamemode'
   | 'videogamedeveloper'
   | 'videogamepublisher'
-  | string
+  | (string & {})
 
 export type BggRpgitemLinkType =
   | 'rpg'
@@ -48,10 +48,10 @@ export type BggRpgitemLinkType =
   | 'rpgdesigner'
   | 'rpgartist'
   | 'rpgproducer'
-  | string
+  | (string & {})
 
 export interface BggThingName {
-  type: 'primary' | 'alternate' | string
+  type: 'primary' | 'alternate' | (string & {})
   sortindex: number
   value: string
 }
@@ -66,7 +66,7 @@ export interface BggThingLink<T = BggThingLinkType> {
 export interface BggThingVideo {
   id: number
   title: string
-  category: 'instructional' | 'unboxing' | 'review' | 'humor' | 'session' | 'interview' | 'other' | string
+  category: 'instructional' | 'unboxing' | 'review' | 'humor' | 'session' | 'interview' | 'other' | (string & {})
   language: string
   link: string
   username: string
@@ -136,7 +136,7 @@ export interface BggBoardgameItem extends BggThingItemBase {
       length: OfValue<number>
       depth: OfValue<number>
       weight: OfValue<number>
-      type: 'boardgameversion' | string
+      type: 'boardgameversion' | (string & {})
       id: number
       [prop: string]: unknown
     }>
@@ -151,7 +151,7 @@ export interface BggBoardgameItem extends BggThingItemBase {
       bayesaverage: OfValue<number>
       ranks: {
         rank: SingleOrMany<{
-          type: 'subtype' | 'family' | string
+          type: 'subtype' | 'family' | (string & {})
           id: number
           name: string
           friendlyname: string
@@ -189,7 +189,7 @@ export interface BggBoardgameaccessoryItem extends BggThingItemBase {
     item: SingleOrMany<{
       thumbnail?: string
       image?: string
-      type: 'bgaccessoryversion' | string
+      type: 'bgaccessoryversion' | (string & {})
       id: number
       [prop: string]: unknown
     }>
@@ -209,7 +209,7 @@ export interface BggVideogameItem extends BggThingItemBase {
   releasedate: OfValue<string>
   versions?: {
     item: SingleOrMany<{
-      type: 'vgcharacterversion' | 'videogameversion' | string
+      type: 'vgcharacterversion' | 'videogameversion' | (string & {})
       id: number
       thumbnail?: string
       image?: string
@@ -234,7 +234,7 @@ export interface BggRpgitemItem extends BggThingItemBase {
       image?: string
       name?: SingleOrMany<BggThingName>
       yearpublished?: OfValue<number>
-      format: OfValue<'electronic' | 'hardcover' | string>
+      format: OfValue<'electronic' | 'hardcover' | (string & {})>
       link?: SingleOrMany<{
         type: string
         id: number
