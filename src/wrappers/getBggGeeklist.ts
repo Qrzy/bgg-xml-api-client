@@ -46,6 +46,6 @@ export interface GeeklistResponse {
   [prop: string]: unknown
 }
 
-export function getBggGeeklist(params: GeeklistParams, settings: Partial<ClientOptions> = {}): Promise<GeeklistResponse> {
+export function getBggGeeklist(params: GeeklistParams, settings: ClientOptions): Promise<GeeklistResponse> {
   return bggXmlApiClient.get('geeklist', params, settings)
 }

@@ -39,7 +39,7 @@ export interface BggPlaysResponse {
   [prop: string]: unknown
 }
 
-export function getBggPlays(params: BggPlaysParams, settings: Partial<ClientOptions> = {}): Promise<BggPlaysResponse> {
+export function getBggPlays(params: BggPlaysParams, settings: ClientOptions): Promise<BggPlaysResponse> {
   if (!params.username && !(params.id && params.type))
     throw new Error('You must specify either username or id and type')
 

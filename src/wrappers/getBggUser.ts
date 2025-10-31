@@ -49,6 +49,6 @@ export interface BggUserResponse {
   [key: string]: any
 }
 
-export function getBggUser(params: BggUserParams, settings: Partial<ClientOptions> = {}): Promise<BggUserResponse> {
+export function getBggUser(params: BggUserParams, settings: ClientOptions): Promise<BggUserResponse> {
   return bggXmlApiClient.get('user', params, settings)
 }

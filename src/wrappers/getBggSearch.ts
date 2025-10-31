@@ -25,7 +25,7 @@ export interface BggSearchResponse {
   [prop: string]: unknown
 }
 
-export function getBggSearch(params: BggSearchParams, settings: Partial<ClientOptions> = {}): Promise<BggSearchResponse> {
+export function getBggSearch(params: BggSearchParams, settings: ClientOptions): Promise<BggSearchResponse> {
   const newParams = {
     ...params,
     ...(params.type && { type: Array.isArray(params.type) ? params.type.join(',') : params.type }),

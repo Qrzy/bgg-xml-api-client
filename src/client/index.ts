@@ -14,15 +14,21 @@ export const bggXmlApiClient = {
     resource: ResourceName,
     queryParams: BggParams,
     {
+      authorizationKey,
       maxRetries = DEFAULT_MAX_RETRIES,
       retryInterval = DEFAULT_INTERVAL,
       timeout = DEFAULT_TIMEOUT,
-    }: Partial<ClientOptions> = {},
+    }: ClientOptions,
   ): Promise<T> => {
+    if (!authorizationKey) {
+      throw new Error('authorizationKey is required to access BGG API as of fall 2025. See README for more details.')
+    }
+
     const apiFetch = ofetch.create({
       baseURL: getBaseUrlForResource(resource),
       headers: {
         'Content-Type': 'text/xml',
+        'Authorization': `Bearer ${authorizationKey}`,
       },
       responseType: 'text',
       onResponse(context) {
