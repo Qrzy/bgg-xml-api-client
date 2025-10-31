@@ -31,7 +31,7 @@ export interface BggFamilyResponse {
   [prop: string]: unknown
 }
 
-export function getBggFamily(params: BggFamilyParams, settings: Partial<ClientOptions> = {}): Promise<BggFamilyResponse> {
+export function getBggFamily(params: BggFamilyParams, settings: ClientOptions): Promise<BggFamilyResponse> {
   const newParams = {
     ...params,
     ...(params.id && { id: Array.isArray(params.id) ? params.id.join(',') : params.id }),

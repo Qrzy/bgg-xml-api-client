@@ -15,6 +15,6 @@ export interface BggThreadResponse {
   [prop: string]: unknown
 }
 
-export function getBggThread(params: BggThreadParams, settings: Partial<ClientOptions> = {}): Promise<BggThreadResponse> {
+export function getBggThread(params: BggThreadParams, settings: ClientOptions): Promise<BggThreadResponse> {
   return bggXmlApiClient.get('thread', params, settings)
 }

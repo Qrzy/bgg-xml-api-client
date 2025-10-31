@@ -38,6 +38,6 @@ export interface BggGuildResponse {
   [prop: string]: unknown
 }
 
-export function getBggGuild(params: BggGuildParams, settings: Partial<ClientOptions> = {}): Promise<BggGuildResponse> {
+export function getBggGuild(params: BggGuildParams, settings: ClientOptions): Promise<BggGuildResponse> {
   return bggXmlApiClient.get('guild', params, settings)
 }

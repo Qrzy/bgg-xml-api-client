@@ -14,6 +14,6 @@ export interface BggForumlistResponse {
   [prop: string]: unknown
 }
 
-export function getBggForumlist(params: BggForumlistParams, settings: Partial<ClientOptions> = {}): Promise<BggForumlistResponse> {
+export function getBggForumlist(params: BggForumlistParams, settings: ClientOptions): Promise<BggForumlistResponse> {
   return bggXmlApiClient.get('forumlist', params, settings)
 }

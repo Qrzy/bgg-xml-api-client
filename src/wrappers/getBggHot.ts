@@ -26,6 +26,6 @@ export interface BggHotResponse {
   [prop: string]: unknown
 }
 
-export function getBggHot(params: BggHotParams, settings: Partial<ClientOptions> = {}): Promise<BggHotResponse> {
+export function getBggHot(params: BggHotParams, settings: ClientOptions): Promise<BggHotResponse> {
   return bggXmlApiClient.get('hot', params, settings)
 }

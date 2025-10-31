@@ -30,9 +30,10 @@ export type ResourceName =
   | 'search'
 
 export interface ClientOptions {
-  maxRetries: number
-  retryInterval: number
-  timeout: number
+  authorizationKey: string
+  maxRetries?: number
+  retryInterval?: number
+  timeout?: number
 }
 
 export type OneOrNothing = 1 | undefined

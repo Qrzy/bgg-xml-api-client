@@ -267,7 +267,7 @@ export interface BggThingResponse {
   [prop: string]: unknown
 }
 
-export function getBggThing(params: BggThingParams, settings: Partial<ClientOptions> = {}): Promise<BggThingResponse> {
+export function getBggThing(params: BggThingParams, settings: ClientOptions): Promise<BggThingResponse> {
   const newParams = {
     ...params,
     ...(params.id && { id: Array.isArray(params.id) ? params.id.join(',') : params.id }),

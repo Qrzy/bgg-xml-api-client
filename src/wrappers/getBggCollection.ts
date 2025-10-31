@@ -135,7 +135,7 @@ export interface BggCollectionResponse {
 
 export function getBggCollection(
   params: BggCollectionParams,
-  settings: Partial<ClientOptions> = {},
+  settings: ClientOptions,
 ): Promise<BggCollectionResponse> {
   const newParams = {
     ...params,
