@@ -1,7 +1,7 @@
 # BGG XML API Client
 
 It's a simple library providing just a single function that returns requested BGG data as a JavaScript object.
-It uses [ofetch](https://github.com/unjs/ofetch) under the hood.
+It uses [ofetch](https://github.com/unjs/ofetch) and [fast-xml-parser](https://github.com/NaturalIntelligence/fast-xml-parser) under the hood.
 
 ## Example usage:
 
