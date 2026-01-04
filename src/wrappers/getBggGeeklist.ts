@@ -1,5 +1,5 @@
 import bggXmlApiClient from '../client'
-import type { ClientOptions, OneOrNothing } from '../types'
+import type { ClientOptions, OneOrNothing, SingleOrMany } from '../types'
 
 export interface GeeklistParams {
   id: number
@@ -16,6 +16,22 @@ interface GeeklistItemComment {
   [prop: string]: unknown
 }
 
+interface GeeklistItem {
+  body: string
+  comment: GeeklistItemComment | GeeklistItemComment[]
+  id: number
+  objecttype: 'thing' | (string & {})
+  subtype: 'boardgame' | 'boardgameaccessory' | (string & {})
+  objectid: number
+  objectname: string
+  username: string
+  postdate: string
+  editdate: string
+  thumbs: number
+  imageid: number
+  [prop: string]: unknown
+}
+
 export interface GeeklistResponse {
   postdate: string
   postdate_timestamp: number
@@ -26,21 +42,7 @@ export interface GeeklistResponse {
   username: string
   title: string
   description: string
-  item: {
-    body: string
-    comment: GeeklistItemComment | GeeklistItemComment[]
-    id: number
-    objecttype: 'thing' | (string & {})
-    subtype: 'boardgame' | 'boardgameaccessory' | (string & {})
-    objectid: number
-    objectname: string
-    username: string
-    postdate: string
-    editdate: string
-    thumbs: number
-    imageid: number
-    [prop: string]: unknown
-  }[]
+  item: SingleOrMany<GeeklistItem>
   id: number
   termsofuse: string
   [prop: string]: unknown
