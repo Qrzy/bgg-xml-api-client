@@ -1,5 +1,5 @@
 import { bggXmlApiClient } from '../client'
-import type { ClientOptions, OfValue, OneOrNothing } from '../types'
+import type { ClientOptions, OfValue, OneOrNothing, SingleOrMany } from '../types'
 
 export type SearchType = 'rpgitem' | 'videogame' | 'boardgame' | 'boardgameaccessory' | 'boardgameexpansion'
 
@@ -9,17 +9,19 @@ export interface BggSearchParams {
   exact?: OneOrNothing
 }
 
+interface SearchResponseItem {
+  name: {
+    type: 'primary' | (string & {})
+    value: string
+  }
+  yearpublished?: OfValue<number>
+  type: 'boardgame' | 'boardgameexpansion' | 'rpgitem' | 'videogame' | (string & {})
+  id: number
+  [prop: string]: unknown
+}
+
 export interface BggSearchResponse {
-  item: {
-    name: {
-      type: 'primary' | (string & {})
-      value: string
-    }
-    yearpublished?: OfValue<number>
-    type: 'boardgame' | 'boardgameexpansion' | 'rpgitem' | 'videogame' | (string & {})
-    id: number
-    [prop: string]: unknown
-  }[]
+  item: SingleOrMany<SearchResponseItem>
   total: number
   termsofuse: string
   [prop: string]: unknown

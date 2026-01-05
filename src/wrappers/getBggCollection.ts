@@ -1,5 +1,5 @@
 import { bggXmlApiClient } from '../client'
-import type { ClientOptions, OfValue, OneOrNothing } from '../types'
+import type { ClientOptions, OfValue, OneOrNothing, SingleOrMany } from '../types'
 
 type BggCollectionSubtype =
   | 'boardgame'
@@ -44,89 +44,91 @@ export interface BggCollectionParams {
   modifiedsince?: string // YY-MM-DD or YY-MM-DD%20HH:MM:SS
 }
 
-export interface BggCollectionResponse {
-  item: {
-    name: {
-      text: string
-      sortindex: number
+interface BggCollectionItem {
+  name: {
+    text: string
+    sortindex: number
+  }
+  originalname: string
+  yearpublished: number
+  image: string
+  thumbnail: string
+  stats: {
+    rating: {
+      usersrated: OfValue<number>
+      average: OfValue<number>
+      bayesaverage: OfValue<number>
+      stddev: OfValue<number>
+      median: OfValue<number>
+      ranks: {
+        rank: {
+          type: 'subtype' | 'family' | (string & {})
+          id: number
+          name: string
+          friendlyname: string
+          value: number
+          bayesaverage: number
+        }[]
+      }
+      value: string
     }
-    originalname: string
-    yearpublished: number
-    image: string
-    thumbnail: string
-    stats: {
-      rating: {
-        usersrated: OfValue<number>
-        average: OfValue<number>
-        bayesaverage: OfValue<number>
-        stddev: OfValue<number>
-        median: OfValue<number>
-        ranks: {
-          rank: {
-            type: 'subtype' | 'family' | (string & {})
-            id: number
-            name: string
-            friendlyname: string
-            value: number
-            bayesaverage: number
-          }[]
-        }
+    minplayers: 2
+    maxplayers: 2
+    minplaytime: 150
+    maxplaytime: 150
+    playingtime: 150
+    numowned: 4434
+  }
+  status: {
+    own: ZeroOrOne
+    prevowned: ZeroOrOne
+    fortrade: ZeroOrOne
+    want: ZeroOrOne
+    wanttoplay: ZeroOrOne
+    wanttobuy: ZeroOrOne
+    wishlist: ZeroOrOne
+    wishlistpriority?: 1 | 2 | 3 | 4 | 5
+    preordered: ZeroOrOne
+    lastmodified: string
+  }
+  numplays: number
+  version?: {
+    item: {
+      thumbnail: string
+      image: string
+      link: {
+        type:
+        | 'boardgameversion'
+        | 'boardgamepublisher'
+        | 'language'
+        | (string & {})
+        id: number
+        value: string
+        inbound?: boolean
+      }[]
+      name: {
+        type: 'primary' | (string & {})
+        sortindex: number
         value: string
       }
-      minplayers: 2
-      maxplayers: 2
-      minplaytime: 150
-      maxplaytime: 150
-      playingtime: 150
-      numowned: 4434
+      yearpublished: OfValue<number>
+      productcode: OfValue<string>
+      width: OfValue<number>
+      length: OfValue<number>
+      depth: OfValue<number>
+      weight: OfValue<number>
+      type: 'boardgameversion' | (string & {})
+      id: number
     }
-    status: {
-      own: ZeroOrOne
-      prevowned: ZeroOrOne
-      fortrade: ZeroOrOne
-      want: ZeroOrOne
-      wanttoplay: ZeroOrOne
-      wanttobuy: ZeroOrOne
-      wishlist: ZeroOrOne
-      wishlistpriority?: 1 | 2 | 3 | 4 | 5
-      preordered: ZeroOrOne
-      lastmodified: string
-    }
-    numplays: number
-    version?: {
-      item: {
-        thumbnail: string
-        image: string
-        link: {
-          type:
-          | 'boardgameversion'
-          | 'boardgamepublisher'
-          | 'language'
-          | (string & {})
-          id: number
-          value: string
-          inbound?: boolean
-        }[]
-        name: {
-          type: 'primary' | (string & {})
-          sortindex: number
-          value: string
-        }
-        yearpublished: OfValue<number>
-        productcode: OfValue<string>
-        width: OfValue<number>
-        length: OfValue<number>
-        depth: OfValue<number>
-        weight: OfValue<number>
-        type: 'boardgameversion' | (string & {})
-        id: number
-      }
-    }
-    objecttype: 'thing' | (string & {})
-    objectid: number
-    subtype: string
-    collid: number
-  }[]
+  }
+  objecttype: 'thing' | (string & {})
+  objectid: number
+  subtype: string
+  collid: number
+}
+
+export interface BggCollectionResponse {
+  item: SingleOrMany<BggCollectionItem>
   totalitems: number
   termsofuse: string
   pubdate: string
