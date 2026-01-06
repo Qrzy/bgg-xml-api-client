@@ -105,3 +105,7 @@ const userCollectionResponse = await client.getBggUser(
   { timeout: 5000 } // note lack of `authorizationKey` here
 )
 ```
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on reporting issues, running tests, and submitting pull requests.
