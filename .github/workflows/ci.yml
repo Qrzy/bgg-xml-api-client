@@ -37,6 +37,8 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
+        env:
+          HUSKY: 0
         run: pnpm install --frozen-lockfile
 
       - name: Build
