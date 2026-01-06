@@ -9,13 +9,13 @@
       "ES2016",
       "ES2017"
     ],
-    "module": "ES2015",
+    "module": "esnext",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "declaration": true,
     "outDir": "./lib",
     "strict": true
   },
-  "include": ["src", "test"],
+  "include": ["src", "test", "env.d.ts"],
   "exclude": ["node_modules", "**/__tests__/*"]
 }

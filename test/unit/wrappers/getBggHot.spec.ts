@@ -6,7 +6,7 @@ vi.mock('../../../src/client')
 
 describe('getBggHot', () => {
   it('gets hot', async () => {
-    await getBggHot({ type: 'boardgame' })
-    expect(bggXmlApiClient.get).toHaveBeenCalledWith('hot', { type: 'boardgame' }, {})
+    await getBggHot({ type: 'boardgame' }, { authorizationKey: 'test-key' })
+    expect(bggXmlApiClient.get).toHaveBeenCalledWith('hot', { type: 'boardgame' }, { authorizationKey: 'test-key' })
   })
 })

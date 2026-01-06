@@ -6,17 +6,17 @@ vi.mock('../../../src/client')
 
 describe('getBggCollection', () => {
   it('passes given username', async () => {
-    await getBggCollection({ username: 'user' })
-    expect(bggXmlApiClient.get).toHaveBeenCalledWith('collection', { username: 'user' }, {})
+    await getBggCollection({ username: 'user' }, { authorizationKey: 'test-key' })
+    expect(bggXmlApiClient.get).toHaveBeenCalledWith('collection', { username: 'user' }, { authorizationKey: 'test-key' })
   })
 
   it('passes given ID', async () => {
-    await getBggCollection({ username: 'user', id: 123 })
-    expect(bggXmlApiClient.get).toHaveBeenCalledWith('collection', { username: 'user', id: 123 }, {})
+    await getBggCollection({ username: 'user', id: 123 }, { authorizationKey: 'test-key' })
+    expect(bggXmlApiClient.get).toHaveBeenCalledWith('collection', { username: 'user', id: 123 }, { authorizationKey: 'test-key' })
   })
 
   it('passes given array of IDs', async () => {
-    await getBggCollection({ username: 'user', id: [123, 456, 789] })
-    expect(bggXmlApiClient.get).toHaveBeenCalledWith('collection', { username: 'user', id: '123,456,789' }, {})
+    await getBggCollection({ username: 'user', id: [123, 456, 789] }, { authorizationKey: 'test-key' })
+    expect(bggXmlApiClient.get).toHaveBeenCalledWith('collection', { username: 'user', id: '123,456,789' }, { authorizationKey: 'test-key' })
   })
 })

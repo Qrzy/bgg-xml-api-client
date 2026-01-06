@@ -6,13 +6,13 @@ vi.mock('../../../src/client')
 
 describe('getBggPlays', () => {
   it('gets plays with given username', async () => {
-    await getBggPlays({ username: 'Qrzy88' })
-    expect(bggXmlApiClient.get).toHaveBeenCalledWith('plays', { username: 'Qrzy88' }, {})
+    await getBggPlays({ username: 'Qrzy88' }, { authorizationKey: 'test-key' })
+    expect(bggXmlApiClient.get).toHaveBeenCalledWith('plays', { username: 'Qrzy88' }, { authorizationKey: 'test-key' })
   })
 
   it('throws when necessary params are not given', async () => {
-    expect(() => getBggPlays({})).toThrowError()
-    expect(() => getBggPlays({ type: 'thing' })).toThrowError()
-    expect(() => getBggPlays({ id: 1 })).toThrowError()
+    expect(() => getBggPlays({}, { authorizationKey: 'test-key' })).toThrowError()
+    expect(() => getBggPlays({ type: 'thing' }, { authorizationKey: 'test-key' })).toThrowError()
+    expect(() => getBggPlays({ id: 1 }, { authorizationKey: 'test-key' })).toThrowError()
   })
 })

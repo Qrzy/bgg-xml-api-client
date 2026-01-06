@@ -6,7 +6,7 @@ vi.mock('../../../src/client')
 
 describe('getBggGeeklist', () => {
   it('gets geeklist with given ID', async () => {
-    await getBggGeeklist({ id: 272940, comments: 1 })
-    expect(bggXmlApiClient.get).toHaveBeenCalledWith('geeklist', { id: 272940, comments: 1 }, {})
+    await getBggGeeklist({ id: 272940, comments: 1 }, { authorizationKey: 'test-key' })
+    expect(bggXmlApiClient.get).toHaveBeenCalledWith('geeklist', { id: 272940, comments: 1 }, { authorizationKey: 'test-key' })
   })
 })

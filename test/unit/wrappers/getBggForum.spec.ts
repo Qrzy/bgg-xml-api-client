@@ -6,7 +6,7 @@ vi.mock('../../../src/client')
 
 describe('getBggForum', () => {
   it('gets forum with given ID', async () => {
-    await getBggForum({ id: 19 })
-    expect(bggXmlApiClient.get).toHaveBeenCalledWith('forum', { id: 19 }, {})
+    await getBggForum({ id: 19 }, { authorizationKey: 'test-key' })
+    expect(bggXmlApiClient.get).toHaveBeenCalledWith('forum', { id: 19 }, { authorizationKey: 'test-key' })
   })
 })
