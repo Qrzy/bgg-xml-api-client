@@ -1,7 +1,42 @@
 # BGG XML API Client
 
+[![CI](https://github.com/Qrzy/bgg-xml-api-client/actions/workflows/ci.yml/badge.svg)](https://github.com/Qrzy/bgg-xml-api-client/actions/workflows/ci.yml) [![npm](https://img.shields.io/npm/v/bgg-xml-api-client.svg)](https://www.npmjs.com/package/bgg-xml-api-client) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+## Table of Contents
+- [Install](#install)
+- [Quick Start](#quick-start)
+- [Wrappers](#wrappers)
+- [Client options](#client-options)
+- [Contributing](#contributing)
+- [Changelog](#changelog)
+
 It's a simple library providing just a single function that returns requested BGG data as a JavaScript object.
 It uses [ofetch](https://github.com/unjs/ofetch) and [fast-xml-parser](https://github.com/NaturalIntelligence/fast-xml-parser) under the hood.
+
+## Install
+Install with your package manager of choice:
+
+```bash
+pnpm add bgg-xml-api-client
+# or
+npm install bgg-xml-api-client
+# or
+yarn add bgg-xml-api-client
+```
+
+## Quick Start
+ESM / TypeScript example:
+
+```ts
+import { bggXmlApiClient, BggXmlApiClient } from 'bgg-xml-api-client'
+
+// one-off request
+const response = await bggXmlApiClient.get('user', { name: 'THENAME' }, { authorizationKey: 'THEKEY' })
+
+// reusable client
+const client = new BggXmlApiClient('THEKEY')
+const userCollection = await client.getCollection({ username: 'THENAME' })
+```
 
 ## Example usage:
 
@@ -39,7 +74,7 @@ There are also wrappers available for certain resources that accept params (alre
 
 ## Single client instance
 
-For more convenience, especialy if one likes to instantiate a client, there is a class `BggXmlApiClient` allowing to pass authorization key just once.
+For more convenience, especially if one likes to instantiate a client, there is a class `BggXmlApiClient` allowing to pass authorization key just once.
 
 ```js
 import { BggXmlApiClient } from 'bgg-xml-api-client'
@@ -62,7 +97,7 @@ interface ClientOptions {
 }
 ```
 
-The `authorizationKey` is the bare minimum as of fall 2025 - BGG rquires all requests to their XML APIs to have proper authorization header.
+The `authorizationKey` is the bare minimum as of fall 2025 - BGG requires all requests to their XML APIs to have proper authorization header.
 You can find more at [Using the XML API -> Application Tokens](https://boardgamegeek.com/using_the_xml_api#toc10)
 
 One can use it to control the retry flow when collections API replies with 202 status code meaning the request is still processing and one should retry later for actual results.
@@ -80,7 +115,7 @@ const response = await bggXmlApiClient.get(
 
 /** ... */
 
-const const client = new BggXmlApiClient('THEKEY')
+const client = new BggXmlApiClient('THEKEY')
 const userCollectionResponse = await client.getCollection(
   { username: 'THENAME' },
   { maxRetries: 20, retryInterval: 3000 } // note lack of `authorizationKey` here
@@ -99,7 +134,7 @@ const response = await getBggUser(
 
 /** ... */
 
-const const client = new BggXmlApiClient('THEKEY')
+const client = new BggXmlApiClient('THEKEY')
 const userCollectionResponse = await client.getBggUser(
   { name: 'THENAME' },
   { timeout: 5000 } // note lack of `authorizationKey` here
@@ -108,4 +143,16 @@ const userCollectionResponse = await client.getBggUser(
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on reporting issues, running tests, and submitting pull requests.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on reporting issues, running tests, and submitting pull requests. Conventional Commits are enforced for this repository (see the contributing guide for details).
+
+## Changelog
+See releases and changelog on GitHub: https://github.com/Qrzy/bgg-xml-api-client/releases
+
+## Examples
+See the `examples/` folder for runnable scripts. They use the compiled `dist` output, so run `pnpm build` before executing them.
+
+```bash
+export BGG_API_KEY=your_key_here
+pnpm build
+node examples/getCollection.mjs
+```
