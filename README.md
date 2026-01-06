@@ -8,9 +8,11 @@ It uses [ofetch](https://github.com/unjs/ofetch) and [fast-xml-parser](https://g
 ```js
 import { bggXmlApiClient } from 'bgg-xml-api-client'
 
-const response = await bggXmlApiClient.get('user', { name: 'Qrzy88' })
-
-console.log(response.id) // displays: 1381959
+const response = await bggXmlApiClient.get(
+  'user',
+  { name: 'THENAME' },
+  { authorizationKey: 'THEKEY' }
+)
 ```
 
 `bggXmlApiClient` takes 3 parameters:
@@ -35,6 +37,18 @@ There are also wrappers available for certain resources that accept params (alre
 - `getBggThread(params, settings)`
 - `getBggUser(params, settings)`
 
+## Single client instance
+
+For more convenience, especialy if one likes to instantiate a client, there is a class `BggXmlApiClient` allowing to pass authorization key just once.
+
+```js
+import { BggXmlApiClient } from 'bgg-xml-api-client'
+
+const client = new BggXmlApiClient('THEKEY')
+const userCollectionResponse = await client.getCollection({ username: 'THENAME' })
+const userResponse = await client.getBggUser({ name: 'THENAME' })
+```
+
 ## Client options
 
 Both main client as well as wrappers accept one more parameter that can override default options:
@@ -56,15 +70,38 @@ One can use it to control the retry flow when collections API replies with 202 s
 For example, in order to increase number of retries on 202 response to 20 made in an interval of 3s:
 
 ```js
-import { bggXmlApiClient } from 'bgg-xml-api-client'
+import { bggXmlApiClient, BggXmlApiClient } from 'bgg-xml-api-client'
 
-const response = await bggXmlApiClient.get('collection', { username: 'Qrzy88' }, { authorizationKey: 'THEKEY', maxRetries: 20, retryInterval: 3000 })
+const response = await bggXmlApiClient.get(
+  'collection',
+  { username: 'THENAME' },
+  { authorizationKey: 'THEKEY', maxRetries: 20, retryInterval: 3000 }
+)
+
+/** ... */
+
+const const client = new BggXmlApiClient('THEKEY')
+const userCollectionResponse = await client.getCollection(
+  { username: 'THENAME' },
+  { maxRetries: 20, retryInterval: 3000 } // note lack of `authorizationKey` here
+)
 ```
 
 or to reduce the timeout to 5s when fetching user:
 
 ```js
-import { getBggUser } from 'bgg-xml-api-client'
+import { getBggUser, BggXmlApiClient } from 'bgg-xml-api-client'
 
-const response = await getBggUser({ name: 'Qrzy88' }, { authorizationKey: 'THEKEY', timeout: 5000 })
+const response = await getBggUser(
+  { name: 'THENAME' },
+  { authorizationKey: 'THEKEY', timeout: 5000 }
+)
+
+/** ... */
+
+const const client = new BggXmlApiClient('THEKEY')
+const userCollectionResponse = await client.getBggUser(
+  { name: 'THENAME' },
+  { timeout: 5000 } // note lack of `authorizationKey` here
+)
 ```
