@@ -1,7 +1,9 @@
-import { describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { getBggCollection } from '../../src/wrappers'
 
 describe('getBggCollection', () => {
+  beforeEach(async () => await new Promise((resolve) => setTimeout(resolve, 1000)))
+
   it('gets collection with given username', async () => {
     const response = await getBggCollection({ username: 'Qrzy88' }, { authorizationKey: import.meta.env.VITE_BGG_API_KEY || '' })
     expect(response).toHaveProperty('item')
