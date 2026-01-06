@@ -17,6 +17,6 @@ jobs:
           node-version: 18.x
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
-      - run: pnpm test
+      - run: pnpm test:ci
         env:
           VITE_BGG_API_KEY: ${{ secrets.VITE_BGG_API_KEY }}

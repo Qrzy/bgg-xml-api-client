@@ -43,6 +43,7 @@
     "nodetest": "node --version",
     "playground": "cd playground && pnpm i && pnpm run dev",
     "test": "vitest",
+    "test:ci": "vitest unit --reporter=dot",
     "build": "unbuild",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
