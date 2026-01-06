@@ -45,4 +45,12 @@ jobs:
 
       - name: Publish
         run: |
-          pnpm publish --access public --no-git-checks
+          set -euo pipefail
+          VERSION=$(node -e "console.log(require('./package.json').version)")
+          if [[ "$VERSION" == *"-"* ]]; then
+            TAG=next
+          else
+            TAG=latest
+          fi
+          echo "Publishing version $VERSION with tag $TAG"
+          pnpm publish --access public --no-git-checks --tag "$TAG"
