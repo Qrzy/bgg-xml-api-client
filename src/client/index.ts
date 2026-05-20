@@ -15,6 +15,7 @@ export const bggXmlApiClient = {
     queryParams: BggParams,
     {
       authorizationKey,
+      baseURL,
       maxRetries = DEFAULT_MAX_RETRIES,
       retryInterval = DEFAULT_INTERVAL,
       timeout = DEFAULT_TIMEOUT,
@@ -25,7 +26,7 @@ export const bggXmlApiClient = {
     }
 
     const apiFetch = ofetch.create({
-      baseURL: getBaseUrlForResource(resource),
+      baseURL: baseURL ?? getBaseUrlForResource(resource),
       headers: {
         'Content-Type': 'text/xml',
         'Authorization': `Bearer ${authorizationKey}`,

@@ -31,6 +31,8 @@ export type ResourceName =
 
 export interface ClientOptions {
   authorizationKey: string
+  /** Override the BGG base URL. Useful for pointing at a local mock server in tests. */
+  baseURL?: string
   maxRetries?: number
   retryInterval?: number
   timeout?: number
