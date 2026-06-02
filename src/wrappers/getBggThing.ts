@@ -147,7 +147,7 @@ export interface BggBoardgameItem extends BggThingItemBase {
   statistics?: {
     ratings: {
       usersrated: OfValue<number>
-      average: OfValue<number>
+      average: OfValue<number | 'N/A'>
       bayesaverage: OfValue<number>
       ranks: {
         rank: SingleOrMany<{

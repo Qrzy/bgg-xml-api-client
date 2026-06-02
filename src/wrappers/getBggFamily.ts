@@ -12,21 +12,24 @@ interface NewType {
   value: string
 }
 
-export interface BggFamilyResponse {
-  item: SingleOrMany<{
-    thumbnail: string
-    image: string
-    name: NewType
-    description: string
-    link: {
-      type: 'boardgamefamily' | (string & {})
-      id: number
-      value: string
-      inbound: boolean
-    }[]
+export interface BggFamilyItem {
+  id: number
+  thumbnail: string
+  image: string
+  name: NewType
+  description: string
+  link: {
     type: 'boardgamefamily' | (string & {})
-    [prop: string]: unknown
-  }>
+    id: number
+    value: string
+    inbound: boolean
+  }[]
+  type: 'boardgamefamily' | (string & {})
+  [prop: string]: unknown
+}
+
+export interface BggFamilyResponse {
+  item: SingleOrMany<BggFamilyItem>
   termsofuse: string
   [prop: string]: unknown
 }

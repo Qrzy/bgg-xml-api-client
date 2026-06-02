@@ -16,7 +16,7 @@ interface GeeklistItemComment {
   [prop: string]: unknown
 }
 
-interface GeeklistItem {
+export interface GeeklistItem {
   body: string
   comment: GeeklistItemComment | GeeklistItemComment[]
   id: number
